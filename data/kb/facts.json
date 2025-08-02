@@ -1,0 +1,142 @@
+[
+  {
+    "id": "mission_001",
+    "subject": "Voyager 1",
+    "predicate": "launch_date",
+    "object": "1977-09-05",
+    "source": "NASA Mission Database",
+    "confidence": 0.95,
+    "metadata": {
+      "mission_type": "interstellar",
+      "status": "active"
+    }
+  },
+  {
+    "id": "mission_002",
+    "subject": "Voyager 2",
+    "predicate": "launch_date",
+    "object": "1977-08-20",
+    "source": "NASA Mission Database",
+    "confidence": 0.95,
+    "metadata": {
+      "mission_type": "interstellar",
+      "status": "active"
+    }
+  },
+  {
+    "id": "mission_003",
+    "subject": "Mars Curiosity",
+    "predicate": "launch_date",
+    "object": "2011-11-26",
+    "source": "NASA Mission Database",
+    "confidence": 0.95,
+    "metadata": {
+      "mission_type": "rover",
+      "status": "active",
+      "planet": "Mars"
+    }
+  },
+  {
+    "id": "mission_004",
+    "subject": "Perseverance",
+    "predicate": "launch_date",
+    "object": "2020-07-30",
+    "source": "NASA Mission Database",
+    "confidence": 0.95,
+    "metadata": {
+      "mission_type": "rover",
+      "status": "active",
+      "planet": "Mars"
+    }
+  },
+  {
+    "id": "mission_005",
+    "subject": "Hubble Space Telescope",
+    "predicate": "launch_date",
+    "object": "1990-04-24",
+    "source": "NASA Mission Database",
+    "confidence": 0.95,
+    "metadata": {
+      "mission_type": "telescope",
+      "status": "active"
+    }
+  },
+  {
+    "id": "mission_006",
+    "subject": "James Webb Space Telescope",
+    "predicate": "launch_date",
+    "object": "2021-12-25",
+    "source": "NASA Mission Database",
+    "confidence": 0.95,
+    "metadata": {
+      "mission_type": "telescope",
+      "status": "active"
+    }
+  },
+  {
+    "id": "tech_001",
+    "subject": "Voyager 1",
+    "predicate": "uses_technology",
+    "object": "ion propulsion",
+    "source": "NASA Mission Database",
+    "confidence": 0.9,
+    "metadata": {
+      "technology_type": "propulsion"
+    }
+  },
+  {
+    "id": "tech_002",
+    "subject": "Mars Curiosity",
+    "predicate": "uses_technology",
+    "object": "nuclear power",
+    "source": "NASA Mission Database",
+    "confidence": 0.9,
+    "metadata": {
+      "technology_type": "power"
+    }
+  },
+  {
+    "id": "planet_001",
+    "subject": "Voyager 1",
+    "predicate": "studied_planet",
+    "object": "Jupiter",
+    "source": "NASA Mission Database",
+    "confidence": 0.95,
+    "metadata": {
+      "study_type": "flyby"
+    }
+  },
+  {
+    "id": "planet_002",
+    "subject": "Voyager 1",
+    "predicate": "studied_planet",
+    "object": "Saturn",
+    "source": "NASA Mission Database",
+    "confidence": 0.95,
+    "metadata": {
+      "study_type": "flyby"
+    }
+  },
+  {
+    "id": "planet_003",
+    "subject": "Mars Curiosity",
+    "predicate": "studied_planet",
+    "object": "Mars",
+    "source": "NASA Mission Database",
+    "confidence": 0.95,
+    "metadata": {
+      "study_type": "surface exploration"
+    }
+  },
+  {
+    "id": "planet_004",
+    "subject": "Perseverance",
+    "predicate": "studied_planet",
+    "object": "Mars",
+    "source": "NASA Mission Database",
+    "confidence": 0.95,
+    "metadata": {
+      "study_type": "surface exploration"
+    }
+  }
+]

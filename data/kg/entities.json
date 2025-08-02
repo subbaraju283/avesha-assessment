@@ -1,0 +1,148 @@
+[
+  {
+    "id": "mission_voyager1",
+    "name": "Voyager 1",
+    "type": "mission",
+    "properties": {
+      "launch_date": "1977-09-05",
+      "status": "active",
+      "type": "interstellar"
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "mission_voyager2",
+    "name": "Voyager 2",
+    "type": "mission",
+    "properties": {
+      "launch_date": "1977-08-20",
+      "status": "active",
+      "type": "interstellar"
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "mission_curiosity",
+    "name": "Mars Curiosity",
+    "type": "mission",
+    "properties": {
+      "launch_date": "2011-11-26",
+      "status": "active",
+      "type": "rover"
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "mission_perseverance",
+    "name": "Perseverance",
+    "type": "mission",
+    "properties": {
+      "launch_date": "2020-07-30",
+      "status": "active",
+      "type": "rover"
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "mission_hubble",
+    "name": "Hubble Space Telescope",
+    "type": "mission",
+    "properties": {
+      "launch_date": "1990-04-24",
+      "status": "active",
+      "type": "telescope"
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "mission_webb",
+    "name": "James Webb Space Telescope",
+    "type": "mission",
+    "properties": {
+      "launch_date": "2021-12-25",
+      "status": "active",
+      "type": "telescope"
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "planet_mars",
+    "name": "Mars",
+    "type": "planet",
+    "properties": {
+      "type": "terrestrial",
+      "distance_from_sun": "227.9M km"
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "planet_jupiter",
+    "name": "Jupiter",
+    "type": "planet",
+    "properties": {
+      "type": "gas_giant",
+      "distance_from_sun": "778.5M km"
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "planet_saturn",
+    "name": "Saturn",
+    "type": "planet",
+    "properties": {
+      "type": "gas_giant",
+      "distance_from_sun": "1.4B km"
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "tech_ion_propulsion",
+    "name": "Ion Propulsion",
+    "type": "technology",
+    "properties": {
+      "type": "propulsion",
+      "efficiency": "high"
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "tech_nuclear_power",
+    "name": "Nuclear Power",
+    "type": "technology",
+    "properties": {
+      "type": "power",
+      "reliability": "high"
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "tech_solar_panels",
+    "name": "Solar Panels",
+    "type": "technology",
+    "properties": {
+      "type": "power",
+      "renewable": true
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "location_kennedy",
+    "name": "Kennedy Space Center",
+    "type": "location",
+    "properties": {
+      "type": "launch_facility",
+      "country": "USA"
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "location_jpl",
+    "name": "Jet Propulsion Laboratory",
+    "type": "location",
+    "properties": {
+      "type": "research_facility",
+      "country": "USA"
+    },
+    "source": "NASA"
+  }
+]

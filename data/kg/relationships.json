@@ -1,0 +1,188 @@
+[
+  {
+    "id": "rel_001",
+    "source_id": "mission_voyager1",
+    "target_id": "planet_jupiter",
+    "type": "STUDIED",
+    "properties": {
+      "study_type": "flyby",
+      "year": 1979
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "rel_002",
+    "source_id": "mission_voyager1",
+    "target_id": "planet_saturn",
+    "type": "STUDIED",
+    "properties": {
+      "study_type": "flyby",
+      "year": 1980
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "rel_003",
+    "source_id": "mission_voyager2",
+    "target_id": "planet_jupiter",
+    "type": "STUDIED",
+    "properties": {
+      "study_type": "flyby",
+      "year": 1979
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "rel_004",
+    "source_id": "mission_voyager2",
+    "target_id": "planet_saturn",
+    "type": "STUDIED",
+    "properties": {
+      "study_type": "flyby",
+      "year": 1981
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "rel_005",
+    "source_id": "mission_curiosity",
+    "target_id": "planet_mars",
+    "type": "STUDIED",
+    "properties": {
+      "study_type": "surface_exploration",
+      "year": 2012
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "rel_006",
+    "source_id": "mission_perseverance",
+    "target_id": "planet_mars",
+    "type": "STUDIED",
+    "properties": {
+      "study_type": "surface_exploration",
+      "year": 2021
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "rel_007",
+    "source_id": "mission_voyager1",
+    "target_id": "tech_ion_propulsion",
+    "type": "USED_TECHNOLOGY",
+    "properties": {
+      "usage_type": "propulsion"
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "rel_008",
+    "source_id": "mission_curiosity",
+    "target_id": "tech_nuclear_power",
+    "type": "USED_TECHNOLOGY",
+    "properties": {
+      "usage_type": "power"
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "rel_009",
+    "source_id": "mission_perseverance",
+    "target_id": "tech_nuclear_power",
+    "type": "USED_TECHNOLOGY",
+    "properties": {
+      "usage_type": "power"
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "rel_010",
+    "source_id": "mission_hubble",
+    "target_id": "tech_solar_panels",
+    "type": "USED_TECHNOLOGY",
+    "properties": {
+      "usage_type": "power"
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "rel_011",
+    "source_id": "mission_webb",
+    "target_id": "tech_solar_panels",
+    "type": "USED_TECHNOLOGY",
+    "properties": {
+      "usage_type": "power"
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "rel_012",
+    "source_id": "mission_voyager1",
+    "target_id": "location_kennedy",
+    "type": "LAUNCHED_FROM",
+    "properties": {
+      "launch_date": "1977-09-05"
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "rel_013",
+    "source_id": "mission_voyager2",
+    "target_id": "location_kennedy",
+    "type": "LAUNCHED_FROM",
+    "properties": {
+      "launch_date": "1977-08-20"
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "rel_014",
+    "source_id": "mission_curiosity",
+    "target_id": "location_kennedy",
+    "type": "LAUNCHED_FROM",
+    "properties": {
+      "launch_date": "2011-11-26"
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "rel_015",
+    "source_id": "mission_perseverance",
+    "target_id": "location_kennedy",
+    "type": "LAUNCHED_FROM",
+    "properties": {
+      "launch_date": "2020-07-30"
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "rel_016",
+    "source_id": "mission_voyager1",
+    "target_id": "mission_voyager2",
+    "type": "SIMILAR_TO",
+    "properties": {
+      "similarity_type": "interstellar_probe"
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "rel_017",
+    "source_id": "mission_curiosity",
+    "target_id": "mission_perseverance",
+    "type": "SIMILAR_TO",
+    "properties": {
+      "similarity_type": "mars_rover"
+    },
+    "source": "NASA"
+  },
+  {
+    "id": "rel_018",
+    "source_id": "mission_hubble",
+    "target_id": "mission_webb",
+    "type": "SIMILAR_TO",
+    "properties": {
+      "similarity_type": "space_telescope"
+    },
+    "source": "NASA"
+  }
+]

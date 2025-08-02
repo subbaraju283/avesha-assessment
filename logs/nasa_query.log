@@ -1,0 +1,511 @@
+2025-08-01 18:58:21,453 - src.models.llm_manager - ERROR - Failed to initialize provider anthropic: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+2025-08-01 18:58:21,453 - src.models.llm_manager - WARNING - Local LLM provider not fully implemented
+2025-08-01 18:58:21,492 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-08-01 18:58:21,492 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-01 18:59:30,383 - src.models.llm_manager - ERROR - Failed to initialize provider anthropic: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+2025-08-01 18:59:30,384 - src.models.llm_manager - WARNING - Local LLM provider not fully implemented
+2025-08-01 18:59:30,394 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-08-01 18:59:30,394 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-01 18:59:31,887 - src.kb.fact_store - INFO - No existing facts found, starting with empty store
+2025-08-01 18:59:31,889 - src.kb.knowledge_base - INFO - Loaded 12 NASA facts into knowledge base
+2025-08-01 19:00:35,255 - src.models.llm_manager - ERROR - Failed to initialize provider anthropic: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+2025-08-01 19:00:35,255 - src.models.llm_manager - WARNING - Local LLM provider not fully implemented
+2025-08-01 19:00:35,264 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-08-01 19:00:35,264 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-01 19:00:36,667 - src.kb.fact_store - INFO - Loaded 12 facts from storage
+2025-08-01 19:00:36,667 - src.kb.fact_store - WARNING - Fact with id mission_001 already exists, updating
+2025-08-01 19:00:36,667 - src.kb.fact_store - WARNING - Fact with id mission_002 already exists, updating
+2025-08-01 19:00:36,667 - src.kb.fact_store - WARNING - Fact with id mission_003 already exists, updating
+2025-08-01 19:00:36,668 - src.kb.fact_store - WARNING - Fact with id mission_004 already exists, updating
+2025-08-01 19:00:36,668 - src.kb.fact_store - WARNING - Fact with id mission_005 already exists, updating
+2025-08-01 19:00:36,668 - src.kb.fact_store - WARNING - Fact with id mission_006 already exists, updating
+2025-08-01 19:00:36,668 - src.kb.fact_store - WARNING - Fact with id tech_001 already exists, updating
+2025-08-01 19:00:36,668 - src.kb.fact_store - WARNING - Fact with id tech_002 already exists, updating
+2025-08-01 19:00:36,668 - src.kb.fact_store - WARNING - Fact with id planet_001 already exists, updating
+2025-08-01 19:00:36,668 - src.kb.fact_store - WARNING - Fact with id planet_002 already exists, updating
+2025-08-01 19:00:36,669 - src.kb.fact_store - WARNING - Fact with id planet_003 already exists, updating
+2025-08-01 19:00:36,669 - src.kb.fact_store - WARNING - Fact with id planet_004 already exists, updating
+2025-08-01 19:00:36,669 - src.kb.knowledge_base - INFO - Loaded 12 NASA facts into knowledge base
+2025-08-01 19:00:36,669 - src.kg.graph_store - INFO - No existing entities found
+2025-08-01 19:00:36,669 - src.kg.graph_store - INFO - No existing relationships found
+2025-08-01 19:00:36,673 - src.kg.knowledge_graph - INFO - Loaded 14 entities and 18 relationships into knowledge graph
+2025-08-01 19:00:36,673 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-08-01 19:00:36,673 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-01 19:01:32,512 - src.models.llm_manager - ERROR - Failed to initialize provider anthropic: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+2025-08-01 19:01:32,513 - src.models.llm_manager - WARNING - Local LLM provider not fully implemented
+2025-08-01 19:01:32,520 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-08-01 19:01:32,520 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-01 19:01:33,926 - src.kb.fact_store - INFO - Loaded 12 facts from storage
+2025-08-01 19:01:33,926 - src.kb.fact_store - WARNING - Fact with id mission_001 already exists, updating
+2025-08-01 19:01:33,927 - src.kb.fact_store - WARNING - Fact with id mission_002 already exists, updating
+2025-08-01 19:01:33,927 - src.kb.fact_store - WARNING - Fact with id mission_003 already exists, updating
+2025-08-01 19:01:33,927 - src.kb.fact_store - WARNING - Fact with id mission_004 already exists, updating
+2025-08-01 19:01:33,927 - src.kb.fact_store - WARNING - Fact with id mission_005 already exists, updating
+2025-08-01 19:01:33,927 - src.kb.fact_store - WARNING - Fact with id mission_006 already exists, updating
+2025-08-01 19:01:33,927 - src.kb.fact_store - WARNING - Fact with id tech_001 already exists, updating
+2025-08-01 19:01:33,928 - src.kb.fact_store - WARNING - Fact with id tech_002 already exists, updating
+2025-08-01 19:01:33,928 - src.kb.fact_store - WARNING - Fact with id planet_001 already exists, updating
+2025-08-01 19:01:33,928 - src.kb.fact_store - WARNING - Fact with id planet_002 already exists, updating
+2025-08-01 19:01:33,928 - src.kb.fact_store - WARNING - Fact with id planet_003 already exists, updating
+2025-08-01 19:01:33,928 - src.kb.fact_store - WARNING - Fact with id planet_004 already exists, updating
+2025-08-01 19:01:33,928 - src.kb.knowledge_base - INFO - Loaded 12 NASA facts into knowledge base
+2025-08-01 19:01:33,929 - src.kg.graph_store - INFO - Loaded 14 entities from storage
+2025-08-01 19:01:33,929 - src.kg.graph_store - INFO - Loaded 18 relationships from storage
+2025-08-01 19:01:33,929 - src.kg.graph_store - WARNING - Entity with id mission_voyager1 already exists, updating
+2025-08-01 19:01:33,929 - src.kg.graph_store - WARNING - Entity with id mission_voyager2 already exists, updating
+2025-08-01 19:01:33,929 - src.kg.graph_store - WARNING - Entity with id mission_curiosity already exists, updating
+2025-08-01 19:01:33,929 - src.kg.graph_store - WARNING - Entity with id mission_perseverance already exists, updating
+2025-08-01 19:01:33,930 - src.kg.graph_store - WARNING - Entity with id mission_hubble already exists, updating
+2025-08-01 19:01:33,930 - src.kg.graph_store - WARNING - Entity with id mission_webb already exists, updating
+2025-08-01 19:01:33,930 - src.kg.graph_store - WARNING - Entity with id planet_mars already exists, updating
+2025-08-01 19:01:33,930 - src.kg.graph_store - WARNING - Entity with id planet_jupiter already exists, updating
+2025-08-01 19:01:33,930 - src.kg.graph_store - WARNING - Entity with id planet_saturn already exists, updating
+2025-08-01 19:01:33,931 - src.kg.graph_store - WARNING - Entity with id tech_ion_propulsion already exists, updating
+2025-08-01 19:01:33,932 - src.kg.graph_store - WARNING - Entity with id tech_nuclear_power already exists, updating
+2025-08-01 19:01:33,932 - src.kg.graph_store - WARNING - Entity with id tech_solar_panels already exists, updating
+2025-08-01 19:01:33,932 - src.kg.graph_store - WARNING - Entity with id location_kennedy already exists, updating
+2025-08-01 19:01:33,933 - src.kg.graph_store - WARNING - Entity with id location_jpl already exists, updating
+2025-08-01 19:01:33,933 - src.kg.graph_store - WARNING - Relationship with id rel_001 already exists, updating
+2025-08-01 19:01:33,933 - src.kg.graph_store - WARNING - Relationship with id rel_002 already exists, updating
+2025-08-01 19:01:33,933 - src.kg.graph_store - WARNING - Relationship with id rel_003 already exists, updating
+2025-08-01 19:01:33,933 - src.kg.graph_store - WARNING - Relationship with id rel_004 already exists, updating
+2025-08-01 19:01:33,933 - src.kg.graph_store - WARNING - Relationship with id rel_005 already exists, updating
+2025-08-01 19:01:33,934 - src.kg.graph_store - WARNING - Relationship with id rel_006 already exists, updating
+2025-08-01 19:01:33,934 - src.kg.graph_store - WARNING - Relationship with id rel_007 already exists, updating
+2025-08-01 19:01:33,934 - src.kg.graph_store - WARNING - Relationship with id rel_008 already exists, updating
+2025-08-01 19:01:33,934 - src.kg.graph_store - WARNING - Relationship with id rel_009 already exists, updating
+2025-08-01 19:01:33,934 - src.kg.graph_store - WARNING - Relationship with id rel_010 already exists, updating
+2025-08-01 19:01:33,934 - src.kg.graph_store - WARNING - Relationship with id rel_011 already exists, updating
+2025-08-01 19:01:33,934 - src.kg.graph_store - WARNING - Relationship with id rel_012 already exists, updating
+2025-08-01 19:01:33,935 - src.kg.graph_store - WARNING - Relationship with id rel_013 already exists, updating
+2025-08-01 19:01:33,935 - src.kg.graph_store - WARNING - Relationship with id rel_014 already exists, updating
+2025-08-01 19:01:33,935 - src.kg.graph_store - WARNING - Relationship with id rel_015 already exists, updating
+2025-08-01 19:01:33,935 - src.kg.graph_store - WARNING - Relationship with id rel_016 already exists, updating
+2025-08-01 19:01:33,935 - src.kg.graph_store - WARNING - Relationship with id rel_017 already exists, updating
+2025-08-01 19:01:33,935 - src.kg.graph_store - WARNING - Relationship with id rel_018 already exists, updating
+2025-08-01 19:01:33,936 - src.kg.knowledge_graph - INFO - Loaded 14 entities and 18 relationships into knowledge graph
+2025-08-01 19:01:33,936 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-08-01 19:01:33,936 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-01 19:01:34,655 - src.rag.vector_store - INFO - No existing chunks found
+2025-08-01 19:01:34,657 - src.rag.rag_system - INFO - Loaded 5 NASA documents into RAG system
+2025-08-01 19:01:34,659 - src.router.query_router - INFO - Routing query: When was Voyager 1 launched?
+2025-08-01 19:01:35,168 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-08-01 19:01:35,170 - src.models.llm_manager - ERROR - OpenAI generation error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: ${OPENAI*****KEY}. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-08-01 19:01:35,170 - src.router.query_router - WARNING - LLM classification failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: ${OPENAI*****KEY}. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}, using fallback
+2025-08-01 19:01:35,172 - src.kb.knowledge_base - INFO - KB Query: When was Voyager 1 launched?
+2025-08-01 19:01:35,297 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-08-01 19:01:35,298 - src.models.llm_manager - ERROR - OpenAI generation error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: ${OPENAI*****KEY}. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-08-01 19:01:35,298 - src.kb.knowledge_base - WARNING - LLM query analysis failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: ${OPENAI*****KEY}. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-08-01 19:01:38,211 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-08-01 19:01:38,212 - src.models.llm_manager - ERROR - OpenAI generation error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: ${OPENAI*****KEY}. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-08-01 19:01:38,213 - src.kb.knowledge_base - ERROR - Failed to generate KB response: Error code: 401 - {'error': {'message': 'Incorrect API key provided: ${OPENAI*****KEY}. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-08-01 19:02:44,974 - src.models.llm_manager - ERROR - Failed to initialize provider anthropic: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+2025-08-01 19:02:44,975 - src.models.llm_manager - WARNING - Local LLM provider not fully implemented
+2025-08-01 19:02:44,984 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-08-01 19:02:44,984 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-01 19:02:46,410 - src.kb.fact_store - INFO - Loaded 12 facts from storage
+2025-08-01 19:02:46,410 - src.kb.fact_store - WARNING - Fact with id mission_001 already exists, updating
+2025-08-01 19:02:46,411 - src.kb.fact_store - WARNING - Fact with id mission_002 already exists, updating
+2025-08-01 19:02:46,411 - src.kb.fact_store - WARNING - Fact with id mission_003 already exists, updating
+2025-08-01 19:02:46,411 - src.kb.fact_store - WARNING - Fact with id mission_004 already exists, updating
+2025-08-01 19:02:46,411 - src.kb.fact_store - WARNING - Fact with id mission_005 already exists, updating
+2025-08-01 19:02:46,411 - src.kb.fact_store - WARNING - Fact with id mission_006 already exists, updating
+2025-08-01 19:02:46,412 - src.kb.fact_store - WARNING - Fact with id tech_001 already exists, updating
+2025-08-01 19:02:46,412 - src.kb.fact_store - WARNING - Fact with id tech_002 already exists, updating
+2025-08-01 19:02:46,412 - src.kb.fact_store - WARNING - Fact with id planet_001 already exists, updating
+2025-08-01 19:02:46,412 - src.kb.fact_store - WARNING - Fact with id planet_002 already exists, updating
+2025-08-01 19:02:46,412 - src.kb.fact_store - WARNING - Fact with id planet_003 already exists, updating
+2025-08-01 19:02:46,412 - src.kb.fact_store - WARNING - Fact with id planet_004 already exists, updating
+2025-08-01 19:02:46,413 - src.kb.knowledge_base - INFO - Loaded 12 NASA facts into knowledge base
+2025-08-01 19:02:46,413 - src.kg.graph_store - INFO - Loaded 14 entities from storage
+2025-08-01 19:02:46,414 - src.kg.graph_store - INFO - Loaded 18 relationships from storage
+2025-08-01 19:02:46,414 - src.kg.graph_store - WARNING - Entity with id mission_voyager1 already exists, updating
+2025-08-01 19:02:46,414 - src.kg.graph_store - WARNING - Entity with id mission_voyager2 already exists, updating
+2025-08-01 19:02:46,415 - src.kg.graph_store - WARNING - Entity with id mission_curiosity already exists, updating
+2025-08-01 19:02:46,415 - src.kg.graph_store - WARNING - Entity with id mission_perseverance already exists, updating
+2025-08-01 19:02:46,415 - src.kg.graph_store - WARNING - Entity with id mission_hubble already exists, updating
+2025-08-01 19:02:46,415 - src.kg.graph_store - WARNING - Entity with id mission_webb already exists, updating
+2025-08-01 19:02:46,415 - src.kg.graph_store - WARNING - Entity with id planet_mars already exists, updating
+2025-08-01 19:02:46,416 - src.kg.graph_store - WARNING - Entity with id planet_jupiter already exists, updating
+2025-08-01 19:02:46,416 - src.kg.graph_store - WARNING - Entity with id planet_saturn already exists, updating
+2025-08-01 19:02:46,416 - src.kg.graph_store - WARNING - Entity with id tech_ion_propulsion already exists, updating
+2025-08-01 19:02:46,416 - src.kg.graph_store - WARNING - Entity with id tech_nuclear_power already exists, updating
+2025-08-01 19:02:46,416 - src.kg.graph_store - WARNING - Entity with id tech_solar_panels already exists, updating
+2025-08-01 19:02:46,416 - src.kg.graph_store - WARNING - Entity with id location_kennedy already exists, updating
+2025-08-01 19:02:46,417 - src.kg.graph_store - WARNING - Entity with id location_jpl already exists, updating
+2025-08-01 19:02:46,417 - src.kg.graph_store - WARNING - Relationship with id rel_001 already exists, updating
+2025-08-01 19:02:46,417 - src.kg.graph_store - WARNING - Relationship with id rel_002 already exists, updating
+2025-08-01 19:02:46,417 - src.kg.graph_store - WARNING - Relationship with id rel_003 already exists, updating
+2025-08-01 19:02:46,417 - src.kg.graph_store - WARNING - Relationship with id rel_004 already exists, updating
+2025-08-01 19:02:46,417 - src.kg.graph_store - WARNING - Relationship with id rel_005 already exists, updating
+2025-08-01 19:02:46,418 - src.kg.graph_store - WARNING - Relationship with id rel_006 already exists, updating
+2025-08-01 19:02:46,418 - src.kg.graph_store - WARNING - Relationship with id rel_007 already exists, updating
+2025-08-01 19:02:46,418 - src.kg.graph_store - WARNING - Relationship with id rel_008 already exists, updating
+2025-08-01 19:02:46,418 - src.kg.graph_store - WARNING - Relationship with id rel_009 already exists, updating
+2025-08-01 19:02:46,418 - src.kg.graph_store - WARNING - Relationship with id rel_010 already exists, updating
+2025-08-01 19:02:46,418 - src.kg.graph_store - WARNING - Relationship with id rel_011 already exists, updating
+2025-08-01 19:02:46,418 - src.kg.graph_store - WARNING - Relationship with id rel_012 already exists, updating
+2025-08-01 19:02:46,419 - src.kg.graph_store - WARNING - Relationship with id rel_013 already exists, updating
+2025-08-01 19:02:46,419 - src.kg.graph_store - WARNING - Relationship with id rel_014 already exists, updating
+2025-08-01 19:02:46,419 - src.kg.graph_store - WARNING - Relationship with id rel_015 already exists, updating
+2025-08-01 19:02:46,419 - src.kg.graph_store - WARNING - Relationship with id rel_016 already exists, updating
+2025-08-01 19:02:46,419 - src.kg.graph_store - WARNING - Relationship with id rel_017 already exists, updating
+2025-08-01 19:02:46,419 - src.kg.graph_store - WARNING - Relationship with id rel_018 already exists, updating
+2025-08-01 19:02:46,419 - src.kg.knowledge_graph - INFO - Loaded 14 entities and 18 relationships into knowledge graph
+2025-08-01 19:02:46,420 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-08-01 19:02:46,420 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-01 19:02:47,219 - src.rag.vector_store - INFO - Loaded 5 chunks from storage
+2025-08-01 19:02:47,219 - src.rag.vector_store - WARNING - Chunk with id doc_001_chunk_0 already exists, updating
+2025-08-01 19:02:47,220 - src.rag.vector_store - WARNING - Chunk with id doc_002_chunk_0 already exists, updating
+2025-08-01 19:02:47,220 - src.rag.vector_store - WARNING - Chunk with id doc_003_chunk_0 already exists, updating
+2025-08-01 19:02:47,220 - src.rag.vector_store - WARNING - Chunk with id doc_004_chunk_0 already exists, updating
+2025-08-01 19:02:47,220 - src.rag.vector_store - WARNING - Chunk with id doc_005_chunk_0 already exists, updating
+2025-08-01 19:02:47,221 - src.rag.rag_system - INFO - Loaded 5 NASA documents into RAG system
+2025-08-01 19:02:47,223 - src.router.query_router - INFO - Routing query: When was Voyager 1 launched?
+2025-08-01 19:02:47,726 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-08-01 19:02:47,728 - src.models.llm_manager - ERROR - OpenAI generation error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: ${OPENAI*****KEY}. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-08-01 19:02:47,729 - src.router.query_router - WARNING - LLM classification failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: ${OPENAI*****KEY}. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}, using fallback
+2025-08-01 19:02:47,730 - src.kb.knowledge_base - INFO - KB Query: When was Voyager 1 launched?
+2025-08-01 19:02:47,904 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-08-01 19:02:47,905 - src.models.llm_manager - ERROR - OpenAI generation error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: ${OPENAI*****KEY}. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-08-01 19:02:47,905 - src.kb.knowledge_base - WARNING - LLM query analysis failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: ${OPENAI*****KEY}. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-08-01 19:02:48,385 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-08-01 19:02:48,386 - src.models.llm_manager - ERROR - OpenAI generation error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: ${OPENAI*****KEY}. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-08-01 19:02:48,386 - src.kb.knowledge_base - ERROR - Failed to generate KB response: Error code: 401 - {'error': {'message': 'Incorrect API key provided: ${OPENAI*****KEY}. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-08-01 19:05:36,803 - src.models.llm_manager - ERROR - Failed to initialize provider anthropic: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+2025-08-01 19:05:36,803 - src.models.llm_manager - WARNING - Local LLM provider not fully implemented
+2025-08-01 19:05:36,810 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-08-01 19:05:36,810 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-01 19:05:38,251 - src.kb.fact_store - INFO - Loaded 12 facts from storage
+2025-08-01 19:05:38,251 - src.kb.fact_store - WARNING - Fact with id mission_001 already exists, updating
+2025-08-01 19:05:38,252 - src.kb.fact_store - WARNING - Fact with id mission_002 already exists, updating
+2025-08-01 19:05:38,252 - src.kb.fact_store - WARNING - Fact with id mission_003 already exists, updating
+2025-08-01 19:05:38,252 - src.kb.fact_store - WARNING - Fact with id mission_004 already exists, updating
+2025-08-01 19:05:38,252 - src.kb.fact_store - WARNING - Fact with id mission_005 already exists, updating
+2025-08-01 19:05:38,252 - src.kb.fact_store - WARNING - Fact with id mission_006 already exists, updating
+2025-08-01 19:05:38,253 - src.kb.fact_store - WARNING - Fact with id tech_001 already exists, updating
+2025-08-01 19:05:38,253 - src.kb.fact_store - WARNING - Fact with id tech_002 already exists, updating
+2025-08-01 19:05:38,253 - src.kb.fact_store - WARNING - Fact with id planet_001 already exists, updating
+2025-08-01 19:05:38,253 - src.kb.fact_store - WARNING - Fact with id planet_002 already exists, updating
+2025-08-01 19:05:38,253 - src.kb.fact_store - WARNING - Fact with id planet_003 already exists, updating
+2025-08-01 19:05:38,253 - src.kb.fact_store - WARNING - Fact with id planet_004 already exists, updating
+2025-08-01 19:05:38,253 - src.kb.knowledge_base - INFO - Loaded 12 NASA facts into knowledge base
+2025-08-01 19:05:38,254 - src.kg.graph_store - INFO - Loaded 14 entities from storage
+2025-08-01 19:05:38,254 - src.kg.graph_store - INFO - Loaded 18 relationships from storage
+2025-08-01 19:05:38,254 - src.kg.graph_store - WARNING - Entity with id mission_voyager1 already exists, updating
+2025-08-01 19:05:38,254 - src.kg.graph_store - WARNING - Entity with id mission_voyager2 already exists, updating
+2025-08-01 19:05:38,254 - src.kg.graph_store - WARNING - Entity with id mission_curiosity already exists, updating
+2025-08-01 19:05:38,255 - src.kg.graph_store - WARNING - Entity with id mission_perseverance already exists, updating
+2025-08-01 19:05:38,255 - src.kg.graph_store - WARNING - Entity with id mission_hubble already exists, updating
+2025-08-01 19:05:38,255 - src.kg.graph_store - WARNING - Entity with id mission_webb already exists, updating
+2025-08-01 19:05:38,255 - src.kg.graph_store - WARNING - Entity with id planet_mars already exists, updating
+2025-08-01 19:05:38,255 - src.kg.graph_store - WARNING - Entity with id planet_jupiter already exists, updating
+2025-08-01 19:05:38,255 - src.kg.graph_store - WARNING - Entity with id planet_saturn already exists, updating
+2025-08-01 19:05:38,255 - src.kg.graph_store - WARNING - Entity with id tech_ion_propulsion already exists, updating
+2025-08-01 19:05:38,255 - src.kg.graph_store - WARNING - Entity with id tech_nuclear_power already exists, updating
+2025-08-01 19:05:38,256 - src.kg.graph_store - WARNING - Entity with id tech_solar_panels already exists, updating
+2025-08-01 19:05:38,256 - src.kg.graph_store - WARNING - Entity with id location_kennedy already exists, updating
+2025-08-01 19:05:38,256 - src.kg.graph_store - WARNING - Entity with id location_jpl already exists, updating
+2025-08-01 19:05:38,256 - src.kg.graph_store - WARNING - Relationship with id rel_001 already exists, updating
+2025-08-01 19:05:38,256 - src.kg.graph_store - WARNING - Relationship with id rel_002 already exists, updating
+2025-08-01 19:05:38,256 - src.kg.graph_store - WARNING - Relationship with id rel_003 already exists, updating
+2025-08-01 19:05:38,257 - src.kg.graph_store - WARNING - Relationship with id rel_004 already exists, updating
+2025-08-01 19:05:38,257 - src.kg.graph_store - WARNING - Relationship with id rel_005 already exists, updating
+2025-08-01 19:05:38,257 - src.kg.graph_store - WARNING - Relationship with id rel_006 already exists, updating
+2025-08-01 19:05:38,257 - src.kg.graph_store - WARNING - Relationship with id rel_007 already exists, updating
+2025-08-01 19:05:38,257 - src.kg.graph_store - WARNING - Relationship with id rel_008 already exists, updating
+2025-08-01 19:05:38,257 - src.kg.graph_store - WARNING - Relationship with id rel_009 already exists, updating
+2025-08-01 19:05:38,257 - src.kg.graph_store - WARNING - Relationship with id rel_010 already exists, updating
+2025-08-01 19:05:38,258 - src.kg.graph_store - WARNING - Relationship with id rel_011 already exists, updating
+2025-08-01 19:05:38,258 - src.kg.graph_store - WARNING - Relationship with id rel_012 already exists, updating
+2025-08-01 19:05:38,258 - src.kg.graph_store - WARNING - Relationship with id rel_013 already exists, updating
+2025-08-01 19:05:38,258 - src.kg.graph_store - WARNING - Relationship with id rel_014 already exists, updating
+2025-08-01 19:05:38,258 - src.kg.graph_store - WARNING - Relationship with id rel_015 already exists, updating
+2025-08-01 19:05:38,258 - src.kg.graph_store - WARNING - Relationship with id rel_016 already exists, updating
+2025-08-01 19:05:38,258 - src.kg.graph_store - WARNING - Relationship with id rel_017 already exists, updating
+2025-08-01 19:05:38,259 - src.kg.graph_store - WARNING - Relationship with id rel_018 already exists, updating
+2025-08-01 19:05:38,259 - src.kg.knowledge_graph - INFO - Loaded 14 entities and 18 relationships into knowledge graph
+2025-08-01 19:05:38,259 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-08-01 19:05:38,259 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-01 19:05:38,974 - src.rag.vector_store - INFO - Loaded 5 chunks from storage
+2025-08-01 19:05:38,975 - src.rag.vector_store - WARNING - Chunk with id doc_001_chunk_0 already exists, updating
+2025-08-01 19:05:38,975 - src.rag.vector_store - WARNING - Chunk with id doc_002_chunk_0 already exists, updating
+2025-08-01 19:05:38,976 - src.rag.vector_store - WARNING - Chunk with id doc_003_chunk_0 already exists, updating
+2025-08-01 19:05:38,976 - src.rag.vector_store - WARNING - Chunk with id doc_004_chunk_0 already exists, updating
+2025-08-01 19:05:38,980 - src.rag.vector_store - WARNING - Chunk with id doc_005_chunk_0 already exists, updating
+2025-08-01 19:05:38,988 - src.rag.rag_system - INFO - Loaded 5 NASA documents into RAG system
+2025-08-01 19:05:38,991 - src.router.query_router - INFO - Routing query: When was Voyager 1 launched?
+2025-08-01 19:05:39,321 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-08-01 19:05:39,323 - src.models.llm_manager - ERROR - OpenAI generation error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: ${OPENAI*****KEY}. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-08-01 19:05:39,323 - src.models.llm_manager - WARNING - Failed to parse classification response: Error code: 401 - {'error': {'message': 'Incorrect API key provided: ${OPENAI*****KEY}. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-08-01 19:05:39,324 - src.rag.rag_system - INFO - RAG Query: When was Voyager 1 launched?
+2025-08-01 19:05:40,432 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-08-01 19:05:40,433 - src.models.llm_manager - ERROR - OpenAI generation error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: ${OPENAI*****KEY}. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-08-01 19:05:40,433 - src.rag.rag_system - ERROR - Failed to generate RAG answer: Error code: 401 - {'error': {'message': 'Incorrect API key provided: ${OPENAI*****KEY}. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-08-01 19:09:52,316 - src.models.llm_manager - ERROR - Failed to initialize provider anthropic: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+2025-08-01 19:09:52,317 - src.models.llm_manager - WARNING - Local LLM provider not fully implemented
+2025-08-01 19:09:52,325 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-08-01 19:09:52,325 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-01 19:09:53,771 - src.kb.fact_store - INFO - Loaded 12 facts from storage
+2025-08-01 19:09:53,772 - src.kb.fact_store - WARNING - Fact with id mission_001 already exists, updating
+2025-08-01 19:09:53,772 - src.kb.fact_store - WARNING - Fact with id mission_002 already exists, updating
+2025-08-01 19:09:53,772 - src.kb.fact_store - WARNING - Fact with id mission_003 already exists, updating
+2025-08-01 19:09:53,772 - src.kb.fact_store - WARNING - Fact with id mission_004 already exists, updating
+2025-08-01 19:09:53,772 - src.kb.fact_store - WARNING - Fact with id mission_005 already exists, updating
+2025-08-01 19:09:53,772 - src.kb.fact_store - WARNING - Fact with id mission_006 already exists, updating
+2025-08-01 19:09:53,773 - src.kb.fact_store - WARNING - Fact with id tech_001 already exists, updating
+2025-08-01 19:09:53,773 - src.kb.fact_store - WARNING - Fact with id tech_002 already exists, updating
+2025-08-01 19:09:53,773 - src.kb.fact_store - WARNING - Fact with id planet_001 already exists, updating
+2025-08-01 19:09:53,773 - src.kb.fact_store - WARNING - Fact with id planet_002 already exists, updating
+2025-08-01 19:09:53,773 - src.kb.fact_store - WARNING - Fact with id planet_003 already exists, updating
+2025-08-01 19:09:53,773 - src.kb.fact_store - WARNING - Fact with id planet_004 already exists, updating
+2025-08-01 19:09:53,774 - src.kb.knowledge_base - INFO - Loaded 12 NASA facts into knowledge base
+2025-08-01 19:09:53,774 - src.kg.graph_store - INFO - Loaded 14 entities from storage
+2025-08-01 19:09:53,774 - src.kg.graph_store - INFO - Loaded 18 relationships from storage
+2025-08-01 19:09:53,774 - src.kg.graph_store - WARNING - Entity with id mission_voyager1 already exists, updating
+2025-08-01 19:09:53,774 - src.kg.graph_store - WARNING - Entity with id mission_voyager2 already exists, updating
+2025-08-01 19:09:53,774 - src.kg.graph_store - WARNING - Entity with id mission_curiosity already exists, updating
+2025-08-01 19:09:53,774 - src.kg.graph_store - WARNING - Entity with id mission_perseverance already exists, updating
+2025-08-01 19:09:53,775 - src.kg.graph_store - WARNING - Entity with id mission_hubble already exists, updating
+2025-08-01 19:09:53,775 - src.kg.graph_store - WARNING - Entity with id mission_webb already exists, updating
+2025-08-01 19:09:53,775 - src.kg.graph_store - WARNING - Entity with id planet_mars already exists, updating
+2025-08-01 19:09:53,775 - src.kg.graph_store - WARNING - Entity with id planet_jupiter already exists, updating
+2025-08-01 19:09:53,775 - src.kg.graph_store - WARNING - Entity with id planet_saturn already exists, updating
+2025-08-01 19:09:53,775 - src.kg.graph_store - WARNING - Entity with id tech_ion_propulsion already exists, updating
+2025-08-01 19:09:53,776 - src.kg.graph_store - WARNING - Entity with id tech_nuclear_power already exists, updating
+2025-08-01 19:09:53,776 - src.kg.graph_store - WARNING - Entity with id tech_solar_panels already exists, updating
+2025-08-01 19:09:53,776 - src.kg.graph_store - WARNING - Entity with id location_kennedy already exists, updating
+2025-08-01 19:09:53,776 - src.kg.graph_store - WARNING - Entity with id location_jpl already exists, updating
+2025-08-01 19:09:53,776 - src.kg.graph_store - WARNING - Relationship with id rel_001 already exists, updating
+2025-08-01 19:09:53,777 - src.kg.graph_store - WARNING - Relationship with id rel_002 already exists, updating
+2025-08-01 19:09:53,777 - src.kg.graph_store - WARNING - Relationship with id rel_003 already exists, updating
+2025-08-01 19:09:53,777 - src.kg.graph_store - WARNING - Relationship with id rel_004 already exists, updating
+2025-08-01 19:09:53,777 - src.kg.graph_store - WARNING - Relationship with id rel_005 already exists, updating
+2025-08-01 19:09:53,778 - src.kg.graph_store - WARNING - Relationship with id rel_006 already exists, updating
+2025-08-01 19:09:53,778 - src.kg.graph_store - WARNING - Relationship with id rel_007 already exists, updating
+2025-08-01 19:09:53,778 - src.kg.graph_store - WARNING - Relationship with id rel_008 already exists, updating
+2025-08-01 19:09:53,778 - src.kg.graph_store - WARNING - Relationship with id rel_009 already exists, updating
+2025-08-01 19:09:53,778 - src.kg.graph_store - WARNING - Relationship with id rel_010 already exists, updating
+2025-08-01 19:09:53,778 - src.kg.graph_store - WARNING - Relationship with id rel_011 already exists, updating
+2025-08-01 19:09:53,779 - src.kg.graph_store - WARNING - Relationship with id rel_012 already exists, updating
+2025-08-01 19:09:53,779 - src.kg.graph_store - WARNING - Relationship with id rel_013 already exists, updating
+2025-08-01 19:09:53,779 - src.kg.graph_store - WARNING - Relationship with id rel_014 already exists, updating
+2025-08-01 19:09:53,779 - src.kg.graph_store - WARNING - Relationship with id rel_015 already exists, updating
+2025-08-01 19:09:53,780 - src.kg.graph_store - WARNING - Relationship with id rel_016 already exists, updating
+2025-08-01 19:09:53,780 - src.kg.graph_store - WARNING - Relationship with id rel_017 already exists, updating
+2025-08-01 19:09:53,780 - src.kg.graph_store - WARNING - Relationship with id rel_018 already exists, updating
+2025-08-01 19:09:53,781 - src.kg.knowledge_graph - INFO - Loaded 14 entities and 18 relationships into knowledge graph
+2025-08-01 19:09:53,781 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-08-01 19:09:53,781 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-01 19:09:54,609 - src.rag.vector_store - INFO - Loaded 5 chunks from storage
+2025-08-01 19:09:54,609 - src.rag.vector_store - WARNING - Chunk with id doc_001_chunk_0 already exists, updating
+2025-08-01 19:09:54,610 - src.rag.vector_store - WARNING - Chunk with id doc_002_chunk_0 already exists, updating
+2025-08-01 19:09:54,610 - src.rag.vector_store - WARNING - Chunk with id doc_003_chunk_0 already exists, updating
+2025-08-01 19:09:54,610 - src.rag.vector_store - WARNING - Chunk with id doc_004_chunk_0 already exists, updating
+2025-08-01 19:09:54,611 - src.rag.vector_store - WARNING - Chunk with id doc_005_chunk_0 already exists, updating
+2025-08-01 19:09:54,611 - src.rag.rag_system - INFO - Loaded 5 NASA documents into RAG system
+2025-08-01 19:09:54,613 - src.router.query_router - INFO - Routing query: When was Voyager 1 launched?
+2025-08-01 19:09:56,690 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 19:09:56,714 - src.kb.knowledge_base - INFO - KB Query: When was Voyager 1 launched?
+2025-08-01 19:09:58,594 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 19:10:00,279 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 19:10:31,718 - src.models.llm_manager - ERROR - Failed to initialize provider anthropic: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+2025-08-01 19:10:31,718 - src.models.llm_manager - WARNING - Local LLM provider not fully implemented
+2025-08-01 19:10:31,725 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-08-01 19:10:31,725 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-01 19:10:33,140 - src.kb.fact_store - INFO - Loaded 12 facts from storage
+2025-08-01 19:10:33,140 - src.kb.fact_store - WARNING - Fact with id mission_001 already exists, updating
+2025-08-01 19:10:33,141 - src.kb.fact_store - WARNING - Fact with id mission_002 already exists, updating
+2025-08-01 19:10:33,141 - src.kb.fact_store - WARNING - Fact with id mission_003 already exists, updating
+2025-08-01 19:10:33,141 - src.kb.fact_store - WARNING - Fact with id mission_004 already exists, updating
+2025-08-01 19:10:33,141 - src.kb.fact_store - WARNING - Fact with id mission_005 already exists, updating
+2025-08-01 19:10:33,142 - src.kb.fact_store - WARNING - Fact with id mission_006 already exists, updating
+2025-08-01 19:10:33,142 - src.kb.fact_store - WARNING - Fact with id tech_001 already exists, updating
+2025-08-01 19:10:33,142 - src.kb.fact_store - WARNING - Fact with id tech_002 already exists, updating
+2025-08-01 19:10:33,142 - src.kb.fact_store - WARNING - Fact with id planet_001 already exists, updating
+2025-08-01 19:10:33,142 - src.kb.fact_store - WARNING - Fact with id planet_002 already exists, updating
+2025-08-01 19:10:33,142 - src.kb.fact_store - WARNING - Fact with id planet_003 already exists, updating
+2025-08-01 19:10:33,143 - src.kb.fact_store - WARNING - Fact with id planet_004 already exists, updating
+2025-08-01 19:10:33,143 - src.kb.knowledge_base - INFO - Loaded 12 NASA facts into knowledge base
+2025-08-01 19:10:33,145 - src.kg.graph_store - INFO - Loaded 14 entities from storage
+2025-08-01 19:10:33,145 - src.kg.graph_store - INFO - Loaded 18 relationships from storage
+2025-08-01 19:10:33,145 - src.kg.graph_store - WARNING - Entity with id mission_voyager1 already exists, updating
+2025-08-01 19:10:33,145 - src.kg.graph_store - WARNING - Entity with id mission_voyager2 already exists, updating
+2025-08-01 19:10:33,146 - src.kg.graph_store - WARNING - Entity with id mission_curiosity already exists, updating
+2025-08-01 19:10:33,146 - src.kg.graph_store - WARNING - Entity with id mission_perseverance already exists, updating
+2025-08-01 19:10:33,146 - src.kg.graph_store - WARNING - Entity with id mission_hubble already exists, updating
+2025-08-01 19:10:33,146 - src.kg.graph_store - WARNING - Entity with id mission_webb already exists, updating
+2025-08-01 19:10:33,146 - src.kg.graph_store - WARNING - Entity with id planet_mars already exists, updating
+2025-08-01 19:10:33,146 - src.kg.graph_store - WARNING - Entity with id planet_jupiter already exists, updating
+2025-08-01 19:10:33,146 - src.kg.graph_store - WARNING - Entity with id planet_saturn already exists, updating
+2025-08-01 19:10:33,147 - src.kg.graph_store - WARNING - Entity with id tech_ion_propulsion already exists, updating
+2025-08-01 19:10:33,147 - src.kg.graph_store - WARNING - Entity with id tech_nuclear_power already exists, updating
+2025-08-01 19:10:33,147 - src.kg.graph_store - WARNING - Entity with id tech_solar_panels already exists, updating
+2025-08-01 19:10:33,147 - src.kg.graph_store - WARNING - Entity with id location_kennedy already exists, updating
+2025-08-01 19:10:33,147 - src.kg.graph_store - WARNING - Entity with id location_jpl already exists, updating
+2025-08-01 19:10:33,147 - src.kg.graph_store - WARNING - Relationship with id rel_001 already exists, updating
+2025-08-01 19:10:33,148 - src.kg.graph_store - WARNING - Relationship with id rel_002 already exists, updating
+2025-08-01 19:10:33,148 - src.kg.graph_store - WARNING - Relationship with id rel_003 already exists, updating
+2025-08-01 19:10:33,148 - src.kg.graph_store - WARNING - Relationship with id rel_004 already exists, updating
+2025-08-01 19:10:33,148 - src.kg.graph_store - WARNING - Relationship with id rel_005 already exists, updating
+2025-08-01 19:10:33,148 - src.kg.graph_store - WARNING - Relationship with id rel_006 already exists, updating
+2025-08-01 19:10:33,149 - src.kg.graph_store - WARNING - Relationship with id rel_007 already exists, updating
+2025-08-01 19:10:33,149 - src.kg.graph_store - WARNING - Relationship with id rel_008 already exists, updating
+2025-08-01 19:10:33,149 - src.kg.graph_store - WARNING - Relationship with id rel_009 already exists, updating
+2025-08-01 19:10:33,150 - src.kg.graph_store - WARNING - Relationship with id rel_010 already exists, updating
+2025-08-01 19:10:33,150 - src.kg.graph_store - WARNING - Relationship with id rel_011 already exists, updating
+2025-08-01 19:10:33,151 - src.kg.graph_store - WARNING - Relationship with id rel_012 already exists, updating
+2025-08-01 19:10:33,151 - src.kg.graph_store - WARNING - Relationship with id rel_013 already exists, updating
+2025-08-01 19:10:33,151 - src.kg.graph_store - WARNING - Relationship with id rel_014 already exists, updating
+2025-08-01 19:10:33,151 - src.kg.graph_store - WARNING - Relationship with id rel_015 already exists, updating
+2025-08-01 19:10:33,151 - src.kg.graph_store - WARNING - Relationship with id rel_016 already exists, updating
+2025-08-01 19:10:33,151 - src.kg.graph_store - WARNING - Relationship with id rel_017 already exists, updating
+2025-08-01 19:10:33,152 - src.kg.graph_store - WARNING - Relationship with id rel_018 already exists, updating
+2025-08-01 19:10:33,152 - src.kg.knowledge_graph - INFO - Loaded 14 entities and 18 relationships into knowledge graph
+2025-08-01 19:10:33,153 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-08-01 19:10:33,153 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-01 19:10:33,945 - src.rag.vector_store - INFO - Loaded 5 chunks from storage
+2025-08-01 19:10:33,945 - src.rag.vector_store - WARNING - Chunk with id doc_001_chunk_0 already exists, updating
+2025-08-01 19:10:33,946 - src.rag.vector_store - WARNING - Chunk with id doc_002_chunk_0 already exists, updating
+2025-08-01 19:10:33,946 - src.rag.vector_store - WARNING - Chunk with id doc_003_chunk_0 already exists, updating
+2025-08-01 19:10:33,946 - src.rag.vector_store - WARNING - Chunk with id doc_004_chunk_0 already exists, updating
+2025-08-01 19:10:33,947 - src.rag.vector_store - WARNING - Chunk with id doc_005_chunk_0 already exists, updating
+2025-08-01 19:10:33,947 - src.rag.rag_system - INFO - Loaded 5 NASA documents into RAG system
+2025-08-01 19:10:33,953 - src.router.query_router - INFO - Routing query: Which mission was Neil Armstrong part of?
+2025-08-01 19:10:35,493 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 19:10:35,514 - src.kg.knowledge_graph - INFO - KG Query: Which mission was Neil Armstrong part of?
+2025-08-01 19:10:37,846 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 19:10:40,098 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 19:11:53,293 - src.models.llm_manager - ERROR - Failed to initialize provider anthropic: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+2025-08-01 19:11:53,294 - src.models.llm_manager - WARNING - Local LLM provider not fully implemented
+2025-08-01 19:11:53,303 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-08-01 19:11:53,303 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-01 19:11:54,789 - src.kb.fact_store - INFO - Loaded 12 facts from storage
+2025-08-01 19:11:54,789 - src.kb.fact_store - WARNING - Fact with id mission_001 already exists, updating
+2025-08-01 19:11:54,789 - src.kb.fact_store - WARNING - Fact with id mission_002 already exists, updating
+2025-08-01 19:11:54,789 - src.kb.fact_store - WARNING - Fact with id mission_003 already exists, updating
+2025-08-01 19:11:54,789 - src.kb.fact_store - WARNING - Fact with id mission_004 already exists, updating
+2025-08-01 19:11:54,790 - src.kb.fact_store - WARNING - Fact with id mission_005 already exists, updating
+2025-08-01 19:11:54,790 - src.kb.fact_store - WARNING - Fact with id mission_006 already exists, updating
+2025-08-01 19:11:54,790 - src.kb.fact_store - WARNING - Fact with id tech_001 already exists, updating
+2025-08-01 19:11:54,790 - src.kb.fact_store - WARNING - Fact with id tech_002 already exists, updating
+2025-08-01 19:11:54,790 - src.kb.fact_store - WARNING - Fact with id planet_001 already exists, updating
+2025-08-01 19:11:54,790 - src.kb.fact_store - WARNING - Fact with id planet_002 already exists, updating
+2025-08-01 19:11:54,790 - src.kb.fact_store - WARNING - Fact with id planet_003 already exists, updating
+2025-08-01 19:11:54,791 - src.kb.fact_store - WARNING - Fact with id planet_004 already exists, updating
+2025-08-01 19:11:54,791 - src.kb.knowledge_base - INFO - Loaded 12 NASA facts into knowledge base
+2025-08-01 19:11:54,791 - src.kg.graph_store - INFO - Loaded 14 entities from storage
+2025-08-01 19:11:54,791 - src.kg.graph_store - INFO - Loaded 18 relationships from storage
+2025-08-01 19:11:54,791 - src.kg.graph_store - WARNING - Entity with id mission_voyager1 already exists, updating
+2025-08-01 19:11:54,792 - src.kg.graph_store - WARNING - Entity with id mission_voyager2 already exists, updating
+2025-08-01 19:11:54,792 - src.kg.graph_store - WARNING - Entity with id mission_curiosity already exists, updating
+2025-08-01 19:11:54,792 - src.kg.graph_store - WARNING - Entity with id mission_perseverance already exists, updating
+2025-08-01 19:11:54,792 - src.kg.graph_store - WARNING - Entity with id mission_hubble already exists, updating
+2025-08-01 19:11:54,792 - src.kg.graph_store - WARNING - Entity with id mission_webb already exists, updating
+2025-08-01 19:11:54,792 - src.kg.graph_store - WARNING - Entity with id planet_mars already exists, updating
+2025-08-01 19:11:54,792 - src.kg.graph_store - WARNING - Entity with id planet_jupiter already exists, updating
+2025-08-01 19:11:54,793 - src.kg.graph_store - WARNING - Entity with id planet_saturn already exists, updating
+2025-08-01 19:11:54,793 - src.kg.graph_store - WARNING - Entity with id tech_ion_propulsion already exists, updating
+2025-08-01 19:11:54,793 - src.kg.graph_store - WARNING - Entity with id tech_nuclear_power already exists, updating
+2025-08-01 19:11:54,793 - src.kg.graph_store - WARNING - Entity with id tech_solar_panels already exists, updating
+2025-08-01 19:11:54,793 - src.kg.graph_store - WARNING - Entity with id location_kennedy already exists, updating
+2025-08-01 19:11:54,793 - src.kg.graph_store - WARNING - Entity with id location_jpl already exists, updating
+2025-08-01 19:11:54,793 - src.kg.graph_store - WARNING - Relationship with id rel_001 already exists, updating
+2025-08-01 19:11:54,794 - src.kg.graph_store - WARNING - Relationship with id rel_002 already exists, updating
+2025-08-01 19:11:54,794 - src.kg.graph_store - WARNING - Relationship with id rel_003 already exists, updating
+2025-08-01 19:11:54,794 - src.kg.graph_store - WARNING - Relationship with id rel_004 already exists, updating
+2025-08-01 19:11:54,794 - src.kg.graph_store - WARNING - Relationship with id rel_005 already exists, updating
+2025-08-01 19:11:54,794 - src.kg.graph_store - WARNING - Relationship with id rel_006 already exists, updating
+2025-08-01 19:11:54,794 - src.kg.graph_store - WARNING - Relationship with id rel_007 already exists, updating
+2025-08-01 19:11:54,794 - src.kg.graph_store - WARNING - Relationship with id rel_008 already exists, updating
+2025-08-01 19:11:54,795 - src.kg.graph_store - WARNING - Relationship with id rel_009 already exists, updating
+2025-08-01 19:11:54,795 - src.kg.graph_store - WARNING - Relationship with id rel_010 already exists, updating
+2025-08-01 19:11:54,795 - src.kg.graph_store - WARNING - Relationship with id rel_011 already exists, updating
+2025-08-01 19:11:54,795 - src.kg.graph_store - WARNING - Relationship with id rel_012 already exists, updating
+2025-08-01 19:11:54,795 - src.kg.graph_store - WARNING - Relationship with id rel_013 already exists, updating
+2025-08-01 19:11:54,795 - src.kg.graph_store - WARNING - Relationship with id rel_014 already exists, updating
+2025-08-01 19:11:54,796 - src.kg.graph_store - WARNING - Relationship with id rel_015 already exists, updating
+2025-08-01 19:11:54,796 - src.kg.graph_store - WARNING - Relationship with id rel_016 already exists, updating
+2025-08-01 19:11:54,796 - src.kg.graph_store - WARNING - Relationship with id rel_017 already exists, updating
+2025-08-01 19:11:54,796 - src.kg.graph_store - WARNING - Relationship with id rel_018 already exists, updating
+2025-08-01 19:11:54,796 - src.kg.knowledge_graph - INFO - Loaded 14 entities and 18 relationships into knowledge graph
+2025-08-01 19:11:54,796 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-08-01 19:11:54,796 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-01 19:11:55,542 - src.rag.vector_store - INFO - Loaded 5 chunks from storage
+2025-08-01 19:11:55,543 - src.rag.vector_store - WARNING - Chunk with id doc_001_chunk_0 already exists, updating
+2025-08-01 19:11:55,543 - src.rag.vector_store - WARNING - Chunk with id doc_002_chunk_0 already exists, updating
+2025-08-01 19:11:55,544 - src.rag.vector_store - WARNING - Chunk with id doc_003_chunk_0 already exists, updating
+2025-08-01 19:11:55,544 - src.rag.vector_store - WARNING - Chunk with id doc_004_chunk_0 already exists, updating
+2025-08-01 19:11:55,544 - src.rag.vector_store - WARNING - Chunk with id doc_005_chunk_0 already exists, updating
+2025-08-01 19:11:55,545 - src.rag.rag_system - INFO - Loaded 5 NASA documents into RAG system
+2025-08-01 19:11:55,547 - src.router.query_router - INFO - Routing query: When was Hubble Space Telescope Science launched?
+2025-08-01 19:11:56,976 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 19:11:56,997 - src.kb.knowledge_base - INFO - KB Query: When was Hubble Space Telescope Science launched?
+2025-08-01 19:11:59,657 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 19:12:01,611 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 19:12:23,833 - src.models.llm_manager - ERROR - Failed to initialize provider anthropic: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+2025-08-01 19:12:23,834 - src.models.llm_manager - WARNING - Local LLM provider not fully implemented
+2025-08-01 19:12:23,846 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-08-01 19:12:23,846 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-01 19:12:25,336 - src.kb.fact_store - INFO - Loaded 12 facts from storage
+2025-08-01 19:12:25,336 - src.kb.fact_store - WARNING - Fact with id mission_001 already exists, updating
+2025-08-01 19:12:25,336 - src.kb.fact_store - WARNING - Fact with id mission_002 already exists, updating
+2025-08-01 19:12:25,337 - src.kb.fact_store - WARNING - Fact with id mission_003 already exists, updating
+2025-08-01 19:12:25,337 - src.kb.fact_store - WARNING - Fact with id mission_004 already exists, updating
+2025-08-01 19:12:25,337 - src.kb.fact_store - WARNING - Fact with id mission_005 already exists, updating
+2025-08-01 19:12:25,337 - src.kb.fact_store - WARNING - Fact with id mission_006 already exists, updating
+2025-08-01 19:12:25,337 - src.kb.fact_store - WARNING - Fact with id tech_001 already exists, updating
+2025-08-01 19:12:25,337 - src.kb.fact_store - WARNING - Fact with id tech_002 already exists, updating
+2025-08-01 19:12:25,337 - src.kb.fact_store - WARNING - Fact with id planet_001 already exists, updating
+2025-08-01 19:12:25,337 - src.kb.fact_store - WARNING - Fact with id planet_002 already exists, updating
+2025-08-01 19:12:25,338 - src.kb.fact_store - WARNING - Fact with id planet_003 already exists, updating
+2025-08-01 19:12:25,338 - src.kb.fact_store - WARNING - Fact with id planet_004 already exists, updating
+2025-08-01 19:12:25,338 - src.kb.knowledge_base - INFO - Loaded 12 NASA facts into knowledge base
+2025-08-01 19:12:25,338 - src.kg.graph_store - INFO - Loaded 14 entities from storage
+2025-08-01 19:12:25,338 - src.kg.graph_store - INFO - Loaded 18 relationships from storage
+2025-08-01 19:12:25,339 - src.kg.graph_store - WARNING - Entity with id mission_voyager1 already exists, updating
+2025-08-01 19:12:25,339 - src.kg.graph_store - WARNING - Entity with id mission_voyager2 already exists, updating
+2025-08-01 19:12:25,339 - src.kg.graph_store - WARNING - Entity with id mission_curiosity already exists, updating
+2025-08-01 19:12:25,339 - src.kg.graph_store - WARNING - Entity with id mission_perseverance already exists, updating
+2025-08-01 19:12:25,339 - src.kg.graph_store - WARNING - Entity with id mission_hubble already exists, updating
+2025-08-01 19:12:25,339 - src.kg.graph_store - WARNING - Entity with id mission_webb already exists, updating
+2025-08-01 19:12:25,340 - src.kg.graph_store - WARNING - Entity with id planet_mars already exists, updating
+2025-08-01 19:12:25,340 - src.kg.graph_store - WARNING - Entity with id planet_jupiter already exists, updating
+2025-08-01 19:12:25,340 - src.kg.graph_store - WARNING - Entity with id planet_saturn already exists, updating
+2025-08-01 19:12:25,340 - src.kg.graph_store - WARNING - Entity with id tech_ion_propulsion already exists, updating
+2025-08-01 19:12:25,340 - src.kg.graph_store - WARNING - Entity with id tech_nuclear_power already exists, updating
+2025-08-01 19:12:25,340 - src.kg.graph_store - WARNING - Entity with id tech_solar_panels already exists, updating
+2025-08-01 19:12:25,340 - src.kg.graph_store - WARNING - Entity with id location_kennedy already exists, updating
+2025-08-01 19:12:25,341 - src.kg.graph_store - WARNING - Entity with id location_jpl already exists, updating
+2025-08-01 19:12:25,341 - src.kg.graph_store - WARNING - Relationship with id rel_001 already exists, updating
+2025-08-01 19:12:25,341 - src.kg.graph_store - WARNING - Relationship with id rel_002 already exists, updating
+2025-08-01 19:12:25,341 - src.kg.graph_store - WARNING - Relationship with id rel_003 already exists, updating
+2025-08-01 19:12:25,341 - src.kg.graph_store - WARNING - Relationship with id rel_004 already exists, updating
+2025-08-01 19:12:25,341 - src.kg.graph_store - WARNING - Relationship with id rel_005 already exists, updating
+2025-08-01 19:12:25,342 - src.kg.graph_store - WARNING - Relationship with id rel_006 already exists, updating
+2025-08-01 19:12:25,342 - src.kg.graph_store - WARNING - Relationship with id rel_007 already exists, updating
+2025-08-01 19:12:25,342 - src.kg.graph_store - WARNING - Relationship with id rel_008 already exists, updating
+2025-08-01 19:12:25,342 - src.kg.graph_store - WARNING - Relationship with id rel_009 already exists, updating
+2025-08-01 19:12:25,342 - src.kg.graph_store - WARNING - Relationship with id rel_010 already exists, updating
+2025-08-01 19:12:25,342 - src.kg.graph_store - WARNING - Relationship with id rel_011 already exists, updating
+2025-08-01 19:12:25,342 - src.kg.graph_store - WARNING - Relationship with id rel_012 already exists, updating
+2025-08-01 19:12:25,343 - src.kg.graph_store - WARNING - Relationship with id rel_013 already exists, updating
+2025-08-01 19:12:25,343 - src.kg.graph_store - WARNING - Relationship with id rel_014 already exists, updating
+2025-08-01 19:12:25,343 - src.kg.graph_store - WARNING - Relationship with id rel_015 already exists, updating
+2025-08-01 19:12:25,343 - src.kg.graph_store - WARNING - Relationship with id rel_016 already exists, updating
+2025-08-01 19:12:25,343 - src.kg.graph_store - WARNING - Relationship with id rel_017 already exists, updating
+2025-08-01 19:12:25,343 - src.kg.graph_store - WARNING - Relationship with id rel_018 already exists, updating
+2025-08-01 19:12:25,343 - src.kg.knowledge_graph - INFO - Loaded 14 entities and 18 relationships into knowledge graph
+2025-08-01 19:12:25,344 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-08-01 19:12:25,344 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-01 19:12:26,105 - src.rag.vector_store - INFO - Loaded 5 chunks from storage
+2025-08-01 19:12:26,106 - src.rag.vector_store - WARNING - Chunk with id doc_001_chunk_0 already exists, updating
+2025-08-01 19:12:26,106 - src.rag.vector_store - WARNING - Chunk with id doc_002_chunk_0 already exists, updating
+2025-08-01 19:12:26,107 - src.rag.vector_store - WARNING - Chunk with id doc_003_chunk_0 already exists, updating
+2025-08-01 19:12:26,107 - src.rag.vector_store - WARNING - Chunk with id doc_004_chunk_0 already exists, updating
+2025-08-01 19:12:26,108 - src.rag.vector_store - WARNING - Chunk with id doc_005_chunk_0 already exists, updating
+2025-08-01 19:12:26,108 - src.rag.rag_system - INFO - Loaded 5 NASA documents into RAG system
+2025-08-01 19:12:26,111 - src.router.query_router - INFO - Routing query: What does Hubble Space Telescope Science comprise of, explain?
+2025-08-01 19:12:27,916 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 19:12:27,940 - src.rag.rag_system - INFO - RAG Query: What does Hubble Space Telescope Science comprise of, explain?
+2025-08-01 19:12:33,312 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
