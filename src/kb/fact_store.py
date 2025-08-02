@@ -60,29 +60,33 @@ class FactStore:
             self.facts = []
             self.fact_index = {}
     
+    def add_fact(self, fact: Fact):
+        """Add a fact to the store."""
+        logger.info(f"Adding fact to store: {fact.subject} {fact.predicate} {fact.object}")
+        
+        if fact.id in self.fact_index:
+            # Update existing fact
+            index = self.fact_index[fact.id]
+            self.facts[index] = fact
+            logger.debug(f"Updated existing fact {fact.id}")
+        else:
+            # Add new fact
+            self.facts.append(fact)
+            self.fact_index[fact.id] = len(self.facts) - 1
+            logger.debug(f"Added new fact {fact.id}")
+        
+        self._save_facts()
+        logger.info(f"Saved fact {fact.id} to {self.facts_file}")
+    
     def _save_facts(self):
         """Save facts to persistent storage."""
         try:
             facts_data = [asdict(fact) for fact in self.facts]
             with open(self.facts_file, 'w') as f:
                 json.dump(facts_data, f, indent=2)
-            logger.debug(f"Saved {len(self.facts)} facts to {self.facts_file}")
+            logger.info(f"Saved {len(self.facts)} facts to {self.facts_file}")
         except Exception as e:
             logger.error(f"Failed to save facts: {e}")
-    
-    def add_fact(self, fact: Fact):
-        """Add a fact to the store."""
-        if fact.id in self.fact_index:
-            # Update existing fact
-            index = self.fact_index[fact.id]
-            self.facts[index] = fact
-        else:
-            # Add new fact
-            self.facts.append(fact)
-            self.fact_index[fact.id] = len(self.facts) - 1
-        
-        self._save_facts()
-        logger.debug(f"Added fact {fact.id}")
     
     def get_all_facts(self) -> List[Fact]:
         """Get all facts in the store."""

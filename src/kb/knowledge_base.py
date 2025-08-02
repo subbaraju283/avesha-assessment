@@ -41,130 +41,10 @@ class KnowledgeBase:
     
     def _load_nasa_facts(self):
         """Load initial NASA facts into the knowledge base."""
-        nasa_facts = [
-            {
-                "id": "mission_001",
-                "subject": "Voyager 1",
-                "predicate": "launch_date",
-                "object": "1977-09-05",
-                "source": "NASA Mission Database",
-                "confidence": 0.95,
-                "metadata": {"mission_type": "interstellar", "status": "active"}
-            },
-            {
-                "id": "mission_002",
-                "subject": "Voyager 2",
-                "predicate": "launch_date",
-                "object": "1977-08-20",
-                "source": "NASA Mission Database",
-                "confidence": 0.95,
-                "metadata": {"mission_type": "interstellar", "status": "active"}
-            },
-            {
-                "id": "mission_003",
-                "subject": "Mars Curiosity",
-                "predicate": "launch_date",
-                "object": "2011-11-26",
-                "source": "NASA Mission Database",
-                "confidence": 0.95,
-                "metadata": {"mission_type": "rover", "status": "active", "planet": "Mars"}
-            },
-            {
-                "id": "mission_004",
-                "subject": "Perseverance",
-                "predicate": "launch_date",
-                "object": "2020-07-30",
-                "source": "NASA Mission Database",
-                "confidence": 0.95,
-                "metadata": {"mission_type": "rover", "status": "active", "planet": "Mars"}
-            },
-            {
-                "id": "mission_005",
-                "subject": "Hubble Space Telescope",
-                "predicate": "launch_date",
-                "object": "1990-04-24",
-                "source": "NASA Mission Database",
-                "confidence": 0.95,
-                "metadata": {"mission_type": "telescope", "status": "active"}
-            },
-            {
-                "id": "mission_006",
-                "subject": "James Webb Space Telescope",
-                "predicate": "launch_date",
-                "object": "2021-12-25",
-                "source": "NASA Mission Database",
-                "confidence": 0.95,
-                "metadata": {"mission_type": "telescope", "status": "active"}
-            },
-            {
-                "id": "tech_001",
-                "subject": "Voyager 1",
-                "predicate": "uses_technology",
-                "object": "ion propulsion",
-                "source": "NASA Mission Database",
-                "confidence": 0.9,
-                "metadata": {"technology_type": "propulsion"}
-            },
-            {
-                "id": "tech_002",
-                "subject": "Mars Curiosity",
-                "predicate": "uses_technology",
-                "object": "nuclear power",
-                "source": "NASA Mission Database",
-                "confidence": 0.9,
-                "metadata": {"technology_type": "power"}
-            },
-            {
-                "id": "planet_001",
-                "subject": "Voyager 1",
-                "predicate": "studied_planet",
-                "object": "Jupiter",
-                "source": "NASA Mission Database",
-                "confidence": 0.95,
-                "metadata": {"study_type": "flyby"}
-            },
-            {
-                "id": "planet_002",
-                "subject": "Voyager 1",
-                "predicate": "studied_planet",
-                "object": "Saturn",
-                "source": "NASA Mission Database",
-                "confidence": 0.95,
-                "metadata": {"study_type": "flyby"}
-            },
-            {
-                "id": "planet_003",
-                "subject": "Mars Curiosity",
-                "predicate": "studied_planet",
-                "object": "Mars",
-                "source": "NASA Mission Database",
-                "confidence": 0.95,
-                "metadata": {"study_type": "surface exploration"}
-            },
-            {
-                "id": "planet_004",
-                "subject": "Perseverance",
-                "predicate": "studied_planet",
-                "object": "Mars",
-                "source": "NASA Mission Database",
-                "confidence": 0.95,
-                "metadata": {"study_type": "surface exploration"}
-            }
-        ]
-        
-        for fact_data in nasa_facts:
-            fact = Fact(
-                id=fact_data["id"],
-                subject=fact_data["subject"],
-                predicate=fact_data["predicate"],
-                object=fact_data["object"],
-                source=fact_data["source"],
-                confidence=fact_data["confidence"],
-                metadata=fact_data["metadata"]
-            )
-            self.fact_store.add_fact(fact)
-        
-        logger.info(f"Loaded {len(nasa_facts)} NASA facts into knowledge base")
+        # Initial facts are now loaded through document ingestion
+        # The nasa_initial_knowledge.txt file will be processed during ingestion
+        logger.info("Initial facts will be loaded through document ingestion")
+        pass
     
     async def query(self, query: str, debug: bool = False) -> KBQueryResult:
         """
@@ -412,9 +292,138 @@ Do not include any other text or explanation. Only the JSON object."""
         )
     
     def add_fact(self, fact: Fact):
-        """Add a new fact to the knowledge base."""
+        """Add a fact to the knowledge base."""
         self.fact_store.add_fact(fact)
-        logger.info(f"Added fact: {fact.subject} {fact.predicate} {fact.object}")
+    
+    async def extract_facts_from_content(self, content: str, source: str) -> List[Fact]:
+        """
+        Extract facts from document content using LLM.
+        Only extracts facts with 100% confidence that are simple and factual.
+        
+        Args:
+            content: Document content to analyze
+            source: Source document name
+            
+        Returns:
+            List of extracted facts
+        """
+        try:
+            logger.info(f"Starting fact extraction from {source}")
+            
+            # Create prompt for fact extraction
+            prompt = f"""Analyze the following NASA document content and extract simple, factual statements.
+            
+            Content: {content[:2000]}  # Limit content length
+            
+            Extract ONLY facts that are:
+            1. 100% certain and verifiable
+            2. Simple subject-predicate-object format
+            3. Specific dates, names, numbers, or clear relationships
+            4. Not opinions, explanations, or complex descriptions
+            
+            Return ONLY a JSON array of facts in this exact format:
+            [
+                {{
+                    "subject": "entity name",
+                    "predicate": "relationship type",
+                    "object": "value or target entity",
+                    "confidence": 1.0
+                }}
+            ]
+            
+            Examples of good facts:
+            - {{"subject": "Apollo 11", "predicate": "launch_date", "object": "1969-07-16", "confidence": 1.0}}
+            - {{"subject": "Neil Armstrong", "predicate": "mission", "object": "Apollo 11", "confidence": 1.0}}
+            - {{"subject": "Voyager 1", "predicate": "uses_technology", "object": "ion propulsion", "confidence": 1.0}}
+            
+            If no clear facts are found, return an empty array [].
+            Do not include any explanations or additional text."""
+            
+            logger.debug(f"Sending prompt to LLM for fact extraction")
+            
+            # Get LLM response
+            response = await self.llm_manager.generate(prompt)
+            
+            logger.debug(f"Received LLM response: {response[:200]}...")
+            
+            # Parse JSON response
+            try:
+                import json
+                facts_data = json.loads(response)
+                
+                if not isinstance(facts_data, list):
+                    logger.warning(f"Invalid facts format from LLM: {response}")
+                    return []
+                
+                logger.info(f"Parsed {len(facts_data)} potential facts from LLM response")
+                
+                extracted_facts = []
+                for i, fact_data in enumerate(facts_data):
+                    if not isinstance(fact_data, dict):
+                        logger.debug(f"Skipping non-dict fact data: {fact_data}")
+                        continue
+                    
+                    # Validate required fields
+                    required_fields = ["subject", "predicate", "object", "confidence"]
+                    if not all(field in fact_data for field in required_fields):
+                        logger.debug(f"Skipping fact with missing fields: {fact_data}")
+                        continue
+                    
+                    # Only include facts with 100% confidence
+                    if fact_data.get("confidence", 0) != 1.0:
+                        logger.debug(f"Skipping fact with confidence != 1.0: {fact_data}")
+                        continue
+                    
+                    # Create Fact object
+                    fact = Fact(
+                        id=f"extracted_{source}_{i}",
+                        subject=fact_data["subject"],
+                        predicate=fact_data["predicate"],
+                        object=fact_data["object"],
+                        source=source,
+                        confidence=fact_data["confidence"],
+                        metadata={"extraction_method": "llm", "source_document": source}
+                    )
+                    
+                    # Check if fact already exists (simple deduplication)
+                    existing_facts = self.fact_store.get_all_facts()
+                    is_duplicate = False
+                    for existing_fact in existing_facts:
+                        if (existing_fact.subject == fact.subject and 
+                            existing_fact.predicate == fact.predicate and 
+                            existing_fact.object == fact.object):
+                            is_duplicate = True
+                            logger.debug(f"Skipping duplicate fact: {fact.subject} {fact.predicate} {fact.object}")
+                            break
+                    
+                    if not is_duplicate:
+                        extracted_facts.append(fact)
+                        logger.info(f"Extracted fact: {fact.subject} {fact.predicate} {fact.object}")
+                
+                logger.info(f"Successfully extracted {len(extracted_facts)} unique facts from {source}")
+                return extracted_facts
+                
+            except json.JSONDecodeError as e:
+                logger.warning(f"Failed to parse LLM response as JSON: {e}")
+                logger.warning(f"Raw response: {response}")
+                return []
+                
+        except Exception as e:
+            logger.error(f"Error extracting facts from content: {e}")
+            return []
+    
+    def update_knowledge_base_with_facts(self, facts: List[Fact]):
+        """
+        Update the knowledge base with extracted facts.
+        
+        Args:
+            facts: List of facts to add to the knowledge base
+        """
+        for fact in facts:
+            self.add_fact(fact)
+            logger.info(f"Added fact to KB: {fact.subject} {fact.predicate} {fact.object}")
+        
+        logger.info(f"Updated Knowledge Base with {len(facts)} new facts")
     
     def get_stats(self) -> Dict[str, Any]:
         """Get knowledge base statistics."""

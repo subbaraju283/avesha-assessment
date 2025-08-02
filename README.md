@@ -122,66 +122,39 @@ avesha-v2/
 
 ## 🚀 Quick Start
 
-### **1. Environment Setup**
-
-Create a `.env` file in the project root:
-
+### **1. Setup Environment**
 ```bash
-# OpenAI API Key
-OPENAI_API_KEY=your_openai_api_key_here
-
-# Pinecone API Key
-PINECONE_API_KEY=your_pinecone_api_key_here
-
-# Anthropic API Key (optional)
-ANTHROPIC_API_KEY=your_anthropic_api_key_here
-
-# Neo4j Password (for cloud database)
-NEO4J_PASSWORD=your_neo4j_password_here
-```
-
-### **2. Install Dependencies**
-
-```bash
+# Install dependencies
 pip install -r requirements.txt
+
+# Set up environment variables
+python setup_env.py
 ```
 
-### **3. Setup External Services**
+### **2. Setup External Services**
+- **Neo4j AuraDB**: Create a cloud database and get connection details
+- **Pinecone**: Create an index and get API key
+- **OpenAI/Anthropic**: Get API keys for LLM services
 
-#### **Neo4j Database (Cloud Setup)**
-The system uses Neo4j AuraDB (cloud service) for the Knowledge Graph:
-- **Database URL**: `neo4j+s://72bbcca1.databases.neo4j.io`
-- **Username**: `neo4j`
-- **Password**: Set in `.env` file as `NEO4J_PASSWORD`
-
-Add to your `.env` file:
+### **3. Configure Environment**
+Create `.env` file with your API keys:
 ```bash
-NEO4J_PASSWORD=your_neo4j_password_here
+OPENAI_API_KEY=your_openai_key
+ANTHROPIC_API_KEY=your_anthropic_key
+PINECONE_API_KEY=your_pinecone_key
+NEO4J_PASSWORD=your_neo4j_password
 ```
 
-#### **Pinecone Vector Database**
-- Create a Pinecone account at https://www.pinecone.io/
-- Create an index with dimension 1536
-- Add your API key to the `.env` file
-
-### **4. Ingest Documents**
-
+### **4. Initial Data Ingestion**
 ```bash
-# Ingest all documents (sequential processing)
-python main.py ingest
+# Ingest initial NASA knowledge data
+python main.py ingest-initial
 
-# Ingest documents in parallel (faster for multiple files)
-python main.py ingest-parallel --max-concurrent 5
-
-# Ingest documents in batches (optimized resource usage)
-python main.py ingest-batch --batch-size 10
-
-# Ingest specific file
-python main.py ingest-file path/to/document.pdf
+# Or ingest all documents in data/documents/
+python main.py ingest data/documents/
 ```
 
-### **5. Query the System**
-
+### **5. Start Querying**
 ```bash
 # Interactive mode
 python main.py interactive
@@ -232,29 +205,118 @@ rag:
 
 ## 📊 Query Examples
 
-### **Knowledge Base Queries**
+### **Knowledge Base Queries** (Factual Questions)
 ```bash
-# Factual questions about specific missions and technologies
-python main.py query "When was Voyager 1 launched?"
-python main.py query "What technology does Voyager 1 use?"
+# Mission launch dates and basic facts
+python main.py query "When was Apollo 11 launched?"
+python main.py query "What is the launch date of Voyager 1?"
+python main.py query "When was the Hubble Space Telescope launched?"
+python main.py query "What is the launch date of Mars Curiosity?"
+python main.py query "When was the James Webb Space Telescope launched?"
 
+# Mission technologies and capabilities
+python main.py query "What technology does Voyager 1 use for propulsion?"
+python main.py query "What power source does Mars Curiosity use?"
+python main.py query "What technology does Voyager 1 use for power generation?"
+python main.py query "What is the primary objective of Apollo 11?"
+python main.py query "What is the mission objective of Perseverance?"
+
+# Mission status and current operations
+python main.py query "Is Voyager 1 still active?"
+python main.py query "What is the current status of Hubble Space Telescope?"
+python main.py query "Is Mars Curiosity still operational?"
+python main.py query "What is the current status of James Webb Space Telescope?"
+python main.py query "Is Perseverance still exploring Mars?"
+
+# Planetary exploration facts
+python main.py query "Which planets did Voyager 1 study?"
+python main.py query "What does Mars Curiosity study on Mars?"
+python main.py query "What does Perseverance study on Mars?"
+python main.py query "What type of exploration does Curiosity perform?"
+python main.py query "What samples does Perseverance collect?"
+
+# Mission relationships and connections
+python main.py query "What is the relationship between Voyager 1 and Voyager 2?"
+python main.py query "How are Curiosity and Perseverance related?"
+python main.py query "What connects Hubble and James Webb telescopes?"
+python main.py query "What missions use nuclear power technology?"
+python main.py query "Which missions explore Mars?"
 ```
 
-### **Knowledge Graph Queries**
+### **Knowledge Graph Queries** (Relational Reasoning)
 ```bash
-# Relational reasoning about missions and technologies
+# Mission relationships and connections
 python main.py query "Which missions used ion propulsion technology?"
 python main.py query "How are Voyager missions related to Mars exploration?"
-python main.py query "Which mission studied the Mars?"
+python main.py query "What missions studied Jupiter and Saturn?"
+python main.py query "Which missions use nuclear power technology?"
+python main.py query "What connects the Apollo program to modern Mars missions?"
+
+# Technology relationships
+python main.py query "What missions use radioisotope thermoelectric generators?"
+python main.py query "How are ion propulsion and nuclear power related in space missions?"
+python main.py query "What technologies are used by multiple missions?"
+python main.py query "Which missions use solar panel technology?"
+python main.py query "What propulsion systems are used in deep space missions?"
+
+# Planetary exploration networks
+python main.py query "What missions explore Mars and what do they study?"
+python main.py query "How do Voyager missions connect to planetary exploration?"
+python main.py query "What missions study multiple planets?"
+python main.py query "Which missions are related to interstellar exploration?"
+python main.py query "What connects Mars rovers to planetary science?"
+
+# Mission objective relationships
+python main.py query "What missions have similar objectives?"
+python main.py query "How are telescope missions related to planetary exploration?"
+python main.py query "What connects life detection missions?"
+python main.py query "Which missions focus on sample collection?"
+python main.py query "What missions are related to space exploration technology?"
+
+# Temporal and operational relationships
+python main.py query "What missions are currently active?"
+python main.py query "How are missions from different decades related?"
+python main.py query "What missions launched from Kennedy Space Center?"
+python main.py query "Which missions use similar launch vehicles?"
+python main.py query "What missions have long-term operational status?"
 ```
 
-### **RAG Queries**
+### **RAG Queries** (Generative Explanations)
 ```bash
-# Generative explanations about space exploration
-python main.py query "Explain how NASA studies exoplanets"
-python main.py query "Describe the Apollo 11 mission and its significance"
+# Detailed mission explanations
+python main.py query "Explain the Apollo 11 mission and its significance"
+python main.py query "Describe the Voyager program and what it discovered"
 python main.py query "How does ion propulsion work in space missions?"
-python main.py query "What is the Voyager program and what did it discover?"
+python main.py query "Explain the Hubble Space Telescope and its contributions to astronomy"
+python main.py query "What is the James Webb Space Telescope and how does it work?"
+
+# Technology explanations
+python main.py query "How do radioisotope thermoelectric generators work?"
+python main.py query "Explain the differences between solar panels and nuclear power in space"
+python main.py query "How do spacecraft navigate in deep space?"
+python main.py query "What are the challenges of Mars exploration?"
+python main.py query "How do telescopes detect exoplanets?"
+
+# Scientific process explanations
+python main.py query "How do scientists search for signs of life on Mars?"
+python main.py query "Explain the process of sample collection in space missions"
+python main.py query "How do astronomers study distant planets?"
+python main.py query "What methods are used to detect exoplanets?"
+python main.py query "How do space missions contribute to our understanding of the universe?"
+
+# Historical and programmatic context
+python main.py query "How did the Apollo program influence modern space exploration?"
+python main.py query "What is the significance of the Voyager missions?"
+python main.py query "How has Mars exploration evolved over time?"
+python main.py query "What is the future of space telescope technology?"
+python main.py query "How do different space agencies collaborate on missions?"
+
+# Technical and operational details
+python main.py query "What are the challenges of long-duration space missions?"
+python main.py query "How do spacecraft communicate with Earth from deep space?"
+python main.py query "What instruments are used to study planetary surfaces?"
+python main.py query "How do rovers navigate and operate on Mars?"
+python main.py query "What are the requirements for human spaceflight missions?"
 ```
 
 ### **Duplicate Management**
@@ -440,194 +502,3 @@ python main.py ingest  # Sequential processing
 ```bash
 python main.py ingest-parallel --max-concurrent 3-5
 ```
-
-#### **Large Document Sets (50+ files)**
-```bash
-python main.py ingest-batch --batch-size 10-15
-```
-
-#### **Development/Debugging**
-```bash
-python main.py ingest  # Sequential for easier debugging
-```
-
-### **Monitoring & Statistics**
-
-#### **Processing Statistics**
-```bash
-python main.py stats
-```
-Shows:
-- Total files tracked
-- Successful/failed files
-- KG additions and RAG chunks
-- Average processing times
-- File change detection status
-
-#### **Real-time Monitoring**
-- Progress indicators for each processing method
-- Detailed error reporting
-- Performance metrics
-- Resource usage tracking
-
-## 📈 Technical Stack
-
-### **Core Technologies**
-- **Python 3.12+**: Main runtime with async/await support
-- **LangChain**: Document processing and LLM integration
-- **Pinecone**: Cloud-native vector database for RAG
-- **Neo4j**: Graph database for Knowledge Graph
-- **OpenAI**: Primary LLM provider (GPT-4)
-- **Anthropic**: Alternative LLM provider (Claude)
-- **Rich**: Terminal UI and formatting
-
-### **Key Libraries & Dependencies**
-
-#### **Core Framework**
-- **langchain>=0.1.0**: Core LangChain functionality
-- **langchain-openai>=0.0.5**: OpenAI integration
-- **langchain-community>=0.0.20**: Community components
-- **langchain-experimental>=0.0.50**: Experimental features
-
-#### **Vector Database**
-- **pinecone-client>=2.2.4**: Pinecone vector database
-- **sentence-transformers>=5.0.0**: Embedding models
-
-#### **Graph Database**
-- **neo4j==5.15.0**: Neo4j graph database
-- **neo4j-graphrag>=1.9.0**: GraphRAG integration
-
-#### **LLM Providers**
-- **openai>=1.98.0**: OpenAI API client
-- **anthropic>=0.60.0**: Anthropic API client
-
-#### **Document Processing**
-- **unstructured[markdown]>=0.10.0**: Document parsing
-- **beautifulsoup4>=4.12.2**: HTML/XML parsing
-- **pandas>=2.3.1**: Data manipulation
-
-#### **Machine Learning**
-- **numpy>=2.3.2**: Numerical computing
-- **scikit-learn>=1.7.1**: Machine learning utilities
-- **torch>=2.7.1**: PyTorch for ML operations
-
-#### **Development & Testing**
-- **pytest>=7.4.3**: Testing framework
-- **black>=23.11.0**: Code formatting
-- **flake8>=6.1.0**: Code linting
-
-#### **Utilities**
-- **click>=8.0.0**: CLI framework
-- **rich>=13.0.0**: Terminal formatting
-- **pydantic>=2.11.7**: Data validation
-- **aiohttp>=3.12.15**: Async HTTP client
-
-### **Architecture Components**
-
-#### **Query Router**
-- **Intent Classification**: LLM-based query analysis
-- **Pattern Matching**: Rule-based fallback classification
-- **Priority Routing**: KG/RAG prioritized over KB
-- **Confidence Scoring**: Multi-level decision making
-
-#### **Knowledge Base**
-- **Local JSON Storage**: Facts stored in `data/kb/` directory
-- **Semantic Search**: Sentence transformers for similarity
-- **Structured Data**: Subject-predicate-object triples
-- **Embedding Model**: `sentence-transformers/all-MiniLM-L6-v2`
-
-#### **Knowledge Graph**
-- **Neo4j AuraDB**: Cloud-hosted graph database for entities/relationships
-- **GraphRAG Integration**: LLM-based graph querying
-- **Vector Index**: Pinecone integration for hybrid search
-- **APOC Plugin**: Advanced graph operations
-- **Environment Config**: `NEO4J_PASSWORD` in `.env` file
-
-#### **RAG System**
-- **Pinecone Vector DB**: Cloud-native vector storage
-- **Document Chunking**: RecursiveCharacterTextSplitter
-- **Embedding Generation**: OpenAI text-embedding-ada-002
-- **Retrieval**: Top-k similarity search
-- **Answer Generation**: LLM synthesis from chunks
-
-#### **Document Ingestion**
-- **Multi-format Support**: PDF, JSON, MD, TXT, DOCX
-- **Batch Processing**: Parallel and batch ingestion
-- **File Change Detection**: Metadata tracking with hashes
-- **Duplicate Management**: Content-based deduplication
-
-### **Data Flow Architecture**
-
-```
-User Query → Query Router → Intent Classification → Subsystem Selection
-                                                      ↓
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│  Knowledge Base │    │ Knowledge Graph │    │   RAG System    │
-│                 │    │                 │    │                 │
-│ • Fact Storage  │    │ • Neo4j Graph   │    │ • Pinecone      │
-│ • Embedding     │    │ • GraphRAG      │    │ • LangChain     │
-│ • Similarity    │    │ • Vector Index  │    │ • OpenAI LLM    │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-         ↓                       ↓                       ↓
-    Factual Answer         Relational Answer      Generative Answer
-```
-
-### **Performance Characteristics**
-
-#### **Scalability**
-- **Pinecone**: Automatic cloud scaling
-- **Neo4j**: Horizontal scaling with clustering
-- **Async Processing**: Non-blocking operations
-- **Batch Operations**: Optimized for large datasets
-
-#### **Reliability**
-- **Error Handling**: Graceful degradation
-- **Fallback Mechanisms**: Rule-based routing
-- **Retry Logic**: Automatic retry on failures
-- **Logging**: Comprehensive error tracking
-
-#### **Observability**
-- **Debug Mode**: Visual query processing trace
-- **Statistics**: Real-time performance metrics
-- **Logging**: Detailed processing logs
-- **Monitoring**: System health tracking
-
-### **Development Guidelines**
-
-#### **Code Organization**
-- **Modular Design**: Independent subsystems
-- **Clear Interfaces**: Well-defined APIs
-- **Error Handling**: Comprehensive exceptions
-- **Testing**: Unit and integration tests
-
-#### **Adding Features**
-1. **LLM Providers**: Implement in `src/models/providers.py`
-2. **Document Formats**: Add to `src/ingestion/document_processor.py`
-3. **Query Types**: Extend routing in `src/router/query_router.py`
-4. **Storage Backends**: Implement new storage interfaces
-
-#### **Testing Strategy**
-- **Unit Tests**: Individual component testing
-- **Integration Tests**: Subsystem interaction testing
-- **End-to-End Tests**: Complete query flow testing
-- **Performance Tests**: System performance monitoring
-
-## 📝 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new functionality
-5. Submit a pull request
-
-## 📞 Support
-
-For issues and questions:
-1. Check the documentation
-2. Review the debug output
-3. Check system logs in `logs/`
-4. Open an issue with detailed error information

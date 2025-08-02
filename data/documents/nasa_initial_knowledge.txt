@@ -1,0 +1,37 @@
+NASA Mission Database - Initial Knowledge Base
+
+MISSION LAUNCH DATES:
+Voyager 1 was launched on September 5, 1977 from Kennedy Space Center in Florida.
+Voyager 2 was launched on August 20, 1977 from Kennedy Space Center in Florida.
+Mars Curiosity rover was launched on November 26, 2011 from Cape Canaveral Air Force Station.
+Perseverance rover was launched on July 30, 2020 from Cape Canaveral Air Force Station.
+Hubble Space Telescope was launched on April 24, 1990 aboard Space Shuttle Discovery.
+James Webb Space Telescope was launched on December 25, 2021 aboard Ariane 5 rocket.
+
+MISSION TECHNOLOGIES:
+Voyager 1 uses ion propulsion technology for deep space navigation.
+Mars Curiosity uses nuclear power technology for surface operations.
+Voyager 1 uses radioisotope thermoelectric generators for power.
+Mars Curiosity uses nuclear power for its scientific instruments.
+
+PLANETARY EXPLORATION:
+Voyager 1 studied Jupiter during its flyby mission in 1979.
+Voyager 1 studied Saturn during its flyby mission in 1980.
+Mars Curiosity studies Mars through surface exploration and scientific analysis.
+Perseverance studies Mars through surface exploration and sample collection.
+
+MISSION STATUS:
+Voyager 1 is currently active and continues to transmit data from interstellar space.
+Voyager 2 is currently active and continues to transmit data from interstellar space.
+Mars Curiosity is currently active and continues to explore the surface of Mars.
+Perseverance is currently active and continues to explore the surface of Mars.
+Hubble Space Telescope is currently active and continues to observe the universe.
+James Webb Space Telescope is currently active and continues to observe the universe.
+
+MISSION OBJECTIVES:
+Voyager 1's primary objective is to explore the outer planets and interstellar space.
+Voyager 2's primary objective is to explore the outer planets and interstellar space.
+Mars Curiosity's primary objective is to determine if Mars could have supported microbial life.
+Perseverance's primary objective is to search for signs of ancient life and collect samples.
+Hubble Space Telescope's primary objective is to observe the universe in visible, ultraviolet, and near-infrared light.
+James Webb Space Telescope's primary objective is to observe the universe in infrared light. 

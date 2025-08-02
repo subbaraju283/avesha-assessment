@@ -27,7 +27,7 @@ from src.models.llm_manager import LLMManager
 from src.router.query_router import QueryRouter
 from src.kb.knowledge_base import KnowledgeBase
 from src.kg.neo4j_knowledge_graph import Neo4jKnowledgeGraph
-from src.ingestion.hybrid_ingestion_pipeline import HybridIngestionPipeline
+from src.ingestion.hybrid_ingestion_pipeline import HybridIngestionPipeline, HybridIngestionResult
 
 
 def load_env_file():
@@ -229,41 +229,8 @@ class NASAQuerySystem:
             self.console.print("[green]No new documents to process.[/green]")
             return
         
-        # Display results
-        results_table = Table(title="Hybrid Document Ingestion Results")
-        results_table.add_column("Document", style="cyan")
-        results_table.add_column("Status", style="white")
-        results_table.add_column("Neo4j KG", style="blue")
-        results_table.add_column("RAG Chunks", style="yellow")
-        results_table.add_column("Time (s)", style="white")
-        
-        for result in results:
-            status = "[green]✓[/green]" if result.success else "[red]✗[/red]"
-            kg_status = "[green]✓[/green]" if result.added_to_kg else "[red]✗[/red]"
-            results_table.add_row(
-                result.document_id,
-                status,
-                kg_status,
-                str(result.rag_chunks_added),
-                f"{result.processing_time:.2f}"
-            )
-        
-        self.console.print(results_table)
-        
-        # Summary
-        successful = sum(1 for r in results if r.success)
-        added_to_kg = sum(1 for r in results if r.added_to_kg)
-        total_rag_chunks = sum(r.rag_chunks_added for r in results)
-        
-        summary = f"""
-        [bold]Hybrid Ingestion Summary:[/bold]
-        • Processed: {len(results)} documents
-        • Successful: {successful} documents
-        • Added to Neo4j KG: {added_to_kg} documents
-        • RAG chunks created: {total_rag_chunks} chunks
-        """
-        
-        self.console.print(Panel(summary, title="[bold green]Hybrid Ingestion Complete[/bold green]"))
+        # Use the proper display method that includes KB Facts
+        self.display_ingestion_results(results)
     
     async def ingest_single_file(self, file_path: str):
         """Ingest a single file."""
@@ -276,7 +243,6 @@ class NASAQuerySystem:
     def display_ingestion_results(self, results: List):
         """Display ingestion results in a formatted table."""
         if not results:
-            self.console.print("[yellow]No files were processed.[/yellow]")
             return
         
         # Create results table
@@ -285,12 +251,14 @@ class NASAQuerySystem:
         table.add_column("Status", style="green")
         table.add_column("KG Added", style="blue")
         table.add_column("RAG Chunks", style="magenta")
-        table.add_column("Time (s)", style="yellow")
-        table.add_column("Method", style="white")
+        table.add_column("KB Facts", style="yellow")
+        table.add_column("Time (s)", style="white")
+        table.add_column("Method", style="dim")
         
         total_success = 0
         total_kg_added = 0
         total_rag_chunks = 0
+        total_kb_facts = 0
         total_time = 0
         
         for result in results:
@@ -302,6 +270,7 @@ class NASAQuerySystem:
                 status,
                 kg_status,
                 str(result.rag_chunks_added),
+                str(result.kb_facts_added),
                 f"{result.processing_time:.2f}",
                 result.extraction_method
             )
@@ -311,6 +280,7 @@ class NASAQuerySystem:
             if result.added_to_kg:
                 total_kg_added += 1
             total_rag_chunks += result.rag_chunks_added
+            total_kb_facts += result.kb_facts_added
             total_time += result.processing_time
         
         self.console.print(table)
@@ -325,6 +295,7 @@ class NASAQuerySystem:
         summary.add_row("Failed", str(len(results) - total_success))
         summary.add_row("Added to KG", str(total_kg_added))
         summary.add_row("Total RAG Chunks", str(total_rag_chunks))
+        summary.add_row("Total KB Facts", str(total_kb_facts))
         summary.add_row("Total Time", f"{total_time:.2f}s")
         summary.add_row("Avg Time/File", f"{total_time/len(results):.2f}s")
         

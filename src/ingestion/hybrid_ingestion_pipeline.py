@@ -35,12 +35,13 @@ class FileMetadata:
 
 @dataclass
 class HybridIngestionResult:
-    """Result of hybrid document ingestion (Neo4j + RAG)."""
+    """Result of hybrid document ingestion (Neo4j + RAG + KB)."""
     document_id: str
     file_path: str
     success: bool
     added_to_kg: bool  # Whether file was added to Neo4j Knowledge Graph
     rag_chunks_added: int
+    kb_facts_added: int  # Number of facts added to Knowledge Base
     errors: List[str]
     processing_time: float
     extraction_method: str = "hybrid_graphrag"
@@ -126,6 +127,18 @@ class HybridIngestionPipeline:
         except Exception as e:
             logger.warning(f"Failed to initialize document processor: {e}")
             self.document_processor = None
+        
+        # Initialize Knowledge Base for fact extraction
+        try:
+            from ..kb.knowledge_base import KnowledgeBase
+            from ..models.llm_manager import LLMManager
+            
+            llm_manager = LLMManager(config)
+            self.kb = KnowledgeBase(config["kb"], llm_manager)
+            logger.info("Knowledge Base initialized for fact extraction")
+        except Exception as e:
+            logger.warning(f"Failed to initialize Knowledge Base: {e}")
+            self.kb = None
         
         # File metadata tracking
         self.metadata_file = Path("data/ingestion/file_metadata.json")
@@ -407,6 +420,7 @@ class HybridIngestionPipeline:
                         success=False,
                         added_to_kg=False,
                         rag_chunks_added=0,
+                        kb_facts_added=0,
                         errors=[str(e)],
                         processing_time=0.0,
                         extraction_method="parallel_hybrid_graphrag",
@@ -430,6 +444,7 @@ class HybridIngestionPipeline:
                     success=False,
                     added_to_kg=False,
                     rag_chunks_added=0,
+                    kb_facts_added=0,
                     errors=[str(result)],
                     processing_time=0.0,
                     extraction_method="parallel_hybrid_graphrag",
@@ -545,7 +560,33 @@ class HybridIngestionPipeline:
         if rag_batch_data and self.rag:
             await self._batch_upsert_to_rag(rag_batch_data)
         
-        # Step 4: Compile results
+        # Step 4: Extract facts for Knowledge Base (NEW)
+        kb_facts = []
+        kb_facts_per_file = {}  # Track facts per file
+        for file_path, content in file_contents.items():
+            if content:
+                try:
+                    # Extract facts from content
+                    facts = await self._extract_facts_for_kb(content, str(file_path))
+                    kb_facts.extend(facts)
+                    kb_facts_per_file[file_path] = facts  # Store facts for this file
+                    logger.info(f"Extracted {len(facts)} facts from {file_path.name}")
+                except Exception as e:
+                    logger.error(f"Failed to extract facts from {file_path}: {e}")
+                    kb_facts_per_file[file_path] = []
+        
+        # Update Knowledge Base with extracted facts
+        if kb_facts:
+            try:
+                if self.kb:
+                    self.kb.update_knowledge_base_with_facts(kb_facts)
+                    logger.info(f"Successfully updated Knowledge Base with {len(kb_facts)} facts")
+                else:
+                    logger.warning("Knowledge Base not available for fact updates")
+            except Exception as e:
+                logger.error(f"Failed to update Knowledge Base: {e}")
+        
+        # Step 5: Compile results
         kg_result_idx = 0
         for i, file_path in enumerate(file_paths):
             start_time = time.time()
@@ -570,6 +611,9 @@ class HybridIngestionPipeline:
             if file_contents.get(file_path):
                 rag_chunks = len(file_contents[file_path].split()) // 1000 + 1
             
+            # Get KB facts result for this specific file
+            kb_facts_added = len(kb_facts_per_file.get(file_path, []))
+            
             processing_time = time.time() - start_time
             
             # Update file metadata
@@ -582,6 +626,7 @@ class HybridIngestionPipeline:
                 success=len(errors) == 0,
                 added_to_kg=added_to_kg,
                 rag_chunks_added=rag_chunks,
+                kb_facts_added=kb_facts_added,
                 errors=errors,
                 processing_time=processing_time,
                 extraction_method="batch_hybrid_graphrag",
@@ -589,6 +634,29 @@ class HybridIngestionPipeline:
             ))
         
         return results
+    
+    async def _extract_facts_for_kb(self, content: str, source: str) -> List:
+        """
+        Extract facts from document content for Knowledge Base.
+        
+        Args:
+            content: Document content
+            source: Source document name
+            
+        Returns:
+            List of extracted facts
+        """
+        if not self.kb:
+            logger.warning("Knowledge Base not available for fact extraction")
+            return []
+        
+        try:
+            # Extract facts using the Knowledge Base's fact extraction method
+            facts = await self.kb.extract_facts_from_content(content, source)
+            return facts
+        except Exception as e:
+            logger.error(f"Failed to extract facts for KB: {e}")
+            return []
     
     async def _process_kg_for_file(self, file_path: Path, content: str) -> bool:
         """
@@ -755,6 +823,20 @@ class HybridIngestionPipeline:
             elif not self.rag:
                 logger.warning("RAG system not available, skipping vector store update")
             
+            # Extract facts for KB
+            kb_facts_added = 0
+            if content and self.kb:
+                try:
+                    facts = await self._extract_facts_for_kb(content, str(file_path))
+                    kb_facts_added = len(facts)
+                    if facts:
+                        self.kb.update_knowledge_base_with_facts(facts)
+                        logger.info(f"Added {kb_facts_added} facts to KB from {file_path.name}")
+                    else:
+                        logger.info(f"No facts extracted from {file_path.name}")
+                except Exception as e:
+                    logger.error(f"Failed to extract facts for KB from {file_path}: {e}")
+            
             processing_time = time.time() - start_time
             
             # Determine processing status
@@ -768,7 +850,7 @@ class HybridIngestionPipeline:
                 processing_status = "partial"
                 kg_status = "not added to KG"
             
-            logger.info(f"Neo4j processing completed: {kg_status}, {rag_chunks} RAG chunks")
+            logger.info(f"Neo4j processing completed: {kg_status}, {rag_chunks} RAG chunks, {kb_facts_added} KB facts")
             
             # Update file metadata
             self._update_file_metadata(file_path, processing_status)
@@ -779,6 +861,7 @@ class HybridIngestionPipeline:
                 success=len(errors) == 0,
                 added_to_kg=added_to_kg,
                 rag_chunks_added=rag_chunks,
+                kb_facts_added=kb_facts_added,
                 errors=errors,
                 processing_time=processing_time,
                 extraction_method="hybrid_graphrag",
@@ -799,6 +882,7 @@ class HybridIngestionPipeline:
                 success=False,
                 added_to_kg=False, # KG was not built
                 rag_chunks_added=0,
+                kb_facts_added=0,
                 errors=errors,
                 processing_time=time.time() - start_time,
                 extraction_method="hybrid_graphrag",
