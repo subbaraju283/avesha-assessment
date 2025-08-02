@@ -235,19 +235,17 @@ rag:
 ### **Knowledge Base Queries**
 ```bash
 # Factual questions about specific missions and technologies
-python main.py query "When was Apollo 11 launched?"
-python main.py query "Who were the astronauts on Apollo 11?"
-python main.py query "What is the Voyager program?"
-python main.py query "What is ion propulsion technology?"
+python main.py query "When was Voyager 1 launched?"
+python main.py query "What technology does Voyager 1 use?"
+
 ```
 
 ### **Knowledge Graph Queries**
 ```bash
 # Relational reasoning about missions and technologies
 python main.py query "Which missions used ion propulsion technology?"
-python main.py query "What technologies were used in the Apollo 11 mission?"
 python main.py query "How are Voyager missions related to Mars exploration?"
-python main.py query "What missions studied exoplanets and used Hubble Space Telescope?"
+python main.py query "Which mission studied the Mars?"
 ```
 
 ### **RAG Queries**
@@ -257,7 +255,6 @@ python main.py query "Explain how NASA studies exoplanets"
 python main.py query "Describe the Apollo 11 mission and its significance"
 python main.py query "How does ion propulsion work in space missions?"
 python main.py query "What is the Voyager program and what did it discover?"
-python main.py query "Explain the Hubble Space Telescope and its contributions to astronomy"
 ```
 
 ### **Duplicate Management**
