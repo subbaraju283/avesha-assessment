@@ -16,9 +16,9 @@ llm:
 
 # Query Router Configuration
 router:
-  kb_threshold: 0.7
-  kg_threshold: 0.6
-  rag_threshold: 0.4
+  kb_threshold: 0.85    # Higher threshold for KB - only very specific facts
+  kg_threshold: 0.5     # Lower threshold for KG - prioritize relational queries
+  rag_threshold: 0.3    # Lower threshold for RAG - prioritize comprehensive answers
   confidence_threshold: 0.8
   max_retries: 3
 
@@ -34,7 +34,7 @@ kb:
 kg:
   database_url: "neo4j+s://72bbcca1.databases.neo4j.io"
   username: "neo4j"
-  password: "TqEewyu6IUiWVzoaUXfHTjXAC2JHUg72C_p4AEIwJEY"
+  password: "${NEO4J_PASSWORD}"
   max_depth: 3
   max_paths: 5
   relationship_types:

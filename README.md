@@ -53,8 +53,8 @@ The system automatically routes queries to the most appropriate subsystem based 
                     │ • Routing       │
                     └─────────────────┘
                               │
-                    ┌─────────┼─────────┐
-                    │         │         │
+                    ┌────────────────────────────────────────────┐
+                    │                   │                        │
          ┌─────────────────┐ │ ┌─────────────────┐ │ ┌─────────────────┐
          │  Knowledge Base │ │ │ Knowledge Graph │ │ │   RAG System    │
          │                 │ │ │                 │ │ │                 │
@@ -62,8 +62,7 @@ The system automatically routes queries to the most appropriate subsystem based 
          │ • Embedding     │ │ │ • GraphRAG      │ │ │ • LangChain     │
          │ • Similarity    │ │ │ • Vector Index  │ │ │ • OpenAI LLM    │
          └─────────────────┘ │ └─────────────────┘ │ └─────────────────┘
-                    │         │         │
-                    └─────────┴─────────┘
+                    
 ```
 
 ## 📁 Project Structure
@@ -71,34 +70,55 @@ The system automatically routes queries to the most appropriate subsystem based 
 ```
 avesha-v2/
 ├── src/
-│   ├── kb/                    # Knowledge Base
+│   ├── kb/                    # Knowledge Base (Local Storage)
 │   │   ├── knowledge_base.py  # Main KB system
-│   │   ├── fact_store.py      # Fact storage
+│   │   ├── fact_store.py      # Local JSON fact storage
 │   │   └── models.py          # KB data models
-│   ├── kg/                    # Knowledge Graph
-│   │   ├── neo4j_knowledge_graph.py  # Neo4j KG system
+│   ├── kg/                    # Knowledge Graph (Cloud Storage)
+│   │   ├── neo4j_knowledge_graph.py  # Neo4j AuraDB integration
 │   │   └── models.py          # KG data models
-│   ├── rag/                   # RAG System
-│   │   ├── pinecone_rag_system.py    # Pinecone RAG
+│   ├── rag/                   # RAG System (Cloud Storage)
+│   │   ├── pinecone_rag_system.py    # Pinecone vector database
 │   │   └── models.py          # RAG data models
 │   ├── router/                # Query Router
-│   │   ├── query_router.py    # Main router
+│   │   ├── query_router.py    # Main router with KG/RAG prioritization
 │   │   └── intent_classifier.py      # Intent classification
 │   ├── ingestion/             # Document Processing
-│   │   ├── hybrid_ingestion_pipeline.py  # Main pipeline
-│   │   └── document_processor.py    # Document processing
+│   │   ├── hybrid_ingestion_pipeline.py  # Batch/parallel processing
+│   │   └── document_processor.py    # Multi-format document processing
 │   └── models/                # LLM Management
-│       ├── llm_manager.py     # LLM abstraction
-│       └── providers.py       # LLM providers
+│       ├── llm_manager.py     # LLM abstraction layer
+│       └── providers.py       # OpenAI/Anthropic providers
 ├── config/
 │   └── config.yaml           # System configuration
 ├── data/
 │   ├── documents/            # Input documents
-│   ├── kb/                   # KB storage
-│   └── kg/                   # KG storage
+│   ├── kb/                   # Local KB storage (JSON files)
+│   └── ingestion/            # File metadata tracking
+├── logs/                     # System logs
 ├── main.py                   # CLI interface
-└── requirements.txt          # Dependencies
+├── requirements.txt          # Dependencies
+├── requirements-frozen.txt   # Pinned dependencies
+├── Dockerfile               # Docker configuration
+└── .dockerignore           # Docker ignore rules
 ```
+
+## 💾 Storage Architecture
+
+### **Local Storage**
+- **Knowledge Base Facts**: Stored locally in `data/kb/` as JSON files
+- **File Metadata**: Stored locally in `data/ingestion/file_metadata.json`
+- **System Logs**: Stored locally in `logs/` directory
+
+### **Cloud Storage**
+- **Knowledge Graph**: Neo4j AuraDB cloud database
+  - Database URL: `neo4j+s://72bbcca1.databases.neo4j.io`
+  - Entities and relationships stored in cloud
+  - Requires `NEO4J_PASSWORD` in `.env` file
+- **Vector Database**: Pinecone cloud vector database
+  - Document chunks and embeddings stored in cloud
+  - Requires `PINECONE_API_KEY` in `.env` file
+  - Automatic scaling and management
 
 ## 🚀 Quick Start
 
@@ -115,6 +135,9 @@ PINECONE_API_KEY=your_pinecone_api_key_here
 
 # Anthropic API Key (optional)
 ANTHROPIC_API_KEY=your_anthropic_api_key_here
+
+# Neo4j Password (for cloud database)
+NEO4J_PASSWORD=your_neo4j_password_here
 ```
 
 ### **2. Install Dependencies**
@@ -125,11 +148,16 @@ pip install -r requirements.txt
 
 ### **3. Setup External Services**
 
-#### **Neo4j Database**
-You'll need a Neo4j instance running. You can:
-- Use Neo4j Desktop (local development)
-- Use Neo4j AuraDB (cloud service)
-- Use Docker: `docker run -p 7474:7474 -p 7687:7687 neo4j:latest`
+#### **Neo4j Database (Cloud Setup)**
+The system uses Neo4j AuraDB (cloud service) for the Knowledge Graph:
+- **Database URL**: `neo4j+s://72bbcca1.databases.neo4j.io`
+- **Username**: `neo4j`
+- **Password**: Set in `.env` file as `NEO4J_PASSWORD`
+
+Add to your `.env` file:
+```bash
+NEO4J_PASSWORD=your_neo4j_password_here
+```
 
 #### **Pinecone Vector Database**
 - Create a Pinecone account at https://www.pinecone.io/
@@ -160,9 +188,6 @@ python main.py interactive
 
 # Single query
 python main.py query "When was Voyager 1 launched?"
-
-# With debug mode
-python main.py query "Which missions studied Mars?" --debug
 ```
 
 ## 🔧 Configuration
@@ -239,40 +264,6 @@ python main.py cleanup-duplicates
 # Clean up duplicates with custom threshold
 python main.py cleanup-duplicates --similarity-threshold 0.90
 ```
-
-## 🧪 Testing
-
-### **System Tests**
-```bash
-# Run all tests
-pytest tests/
-
-# Run specific test
-pytest tests/test_system.py::TestKnowledgeBase
-```
-
-### **Manual Testing**
-```bash
-# Test imports
-python -c "from src.rag.pinecone_rag_system import PineconeRAGSystem; print('✅ RAG system import successful')"
-
-# Test Neo4j setup
-python setup_neo4j.py
-```
-
-## 🔍 Debug Mode
-
-Enable debug mode to see detailed query processing:
-
-```bash
-python main.py query "Your question here" --debug
-```
-
-**Debug Output Includes:**
-- Query routing decision and confidence
-- Subsystem selection reasoning
-- Retrieved chunks/entities
-- Processing time and metadata
 
 ## 📈 System Statistics
 
@@ -475,66 +466,164 @@ Shows:
 - Performance metrics
 - Resource usage tracking
 
-## 🏗️ Technical Stack
+## 📈 Technical Stack
 
-## 🚨 Troubleshooting
+### **Core Technologies**
+- **Python 3.12+**: Main runtime with async/await support
+- **LangChain**: Document processing and LLM integration
+- **Pinecone**: Cloud-native vector database for RAG
+- **Neo4j**: Graph database for Knowledge Graph
+- **OpenAI**: Primary LLM provider (GPT-4)
+- **Anthropic**: Alternative LLM provider (Claude)
+- **Rich**: Terminal UI and formatting
 
-### **Common Issues**
+### **Key Libraries & Dependencies**
 
-1. **Pinecone API Key Missing**
-   ```bash
-   # Add to .env file
-   PINECONE_API_KEY=your_key_here
-   ```
+#### **Core Framework**
+- **langchain>=0.1.0**: Core LangChain functionality
+- **langchain-openai>=0.0.5**: OpenAI integration
+- **langchain-community>=0.0.20**: Community components
+- **langchain-experimental>=0.0.50**: Experimental features
 
-2. **Neo4j Connection Failed**
-   ```bash
-   # Check if Neo4j is running
-   # For Docker: docker ps | grep neo4j
-   # For local: Check Neo4j Desktop or service status
-   ```
+#### **Vector Database**
+- **pinecone-client>=2.2.4**: Pinecone vector database
+- **sentence-transformers>=5.0.0**: Embedding models
 
-3. **LangChain Import Errors**
-   ```bash
-   # Reinstall dependencies
-   pip install -r requirements.txt
-   ```
+#### **Graph Database**
+- **neo4j==5.15.0**: Neo4j graph database
+- **neo4j-graphrag>=1.9.0**: GraphRAG integration
 
-4. **Batch Processing Errors**
-   ```bash
-   # Check file metadata
-   python main.py file-status data/documents/your_file.pdf
-   
-   # Reset metadata if corrupted
-   python main.py reset-metadata
-   
-   # Force reprocess specific file
-   python main.py force-reprocess data/documents/your_file.pdf
-   ```
+#### **LLM Providers**
+- **openai>=1.98.0**: OpenAI API client
+- **anthropic>=0.60.0**: Anthropic API client
 
-5. **Memory Issues with Large Files**
-   ```bash
-   # Use batch processing with smaller batch size
-   python main.py ingest-batch --batch-size 3
-   
-   # Or use sequential processing
-   python main.py ingest
-   ```
+#### **Document Processing**
+- **unstructured[markdown]>=0.10.0**: Document parsing
+- **beautifulsoup4>=4.12.2**: HTML/XML parsing
+- **pandas>=2.3.1**: Data manipulation
 
-### **Debug Commands**
-```bash
-# Check system status
-python main.py stats
+#### **Machine Learning**
+- **numpy>=2.3.2**: Numerical computing
+- **scikit-learn>=1.7.1**: Machine learning utilities
+- **torch>=2.7.1**: PyTorch for ML operations
 
-# Test imports
-python -c "from src.rag.pinecone_rag_system import PineconeRAGSystem"
+#### **Development & Testing**
+- **pytest>=7.4.3**: Testing framework
+- **black>=23.11.0**: Code formatting
+- **flake8>=6.1.0**: Code linting
 
-# Check configuration
-python -c "import yaml; print(yaml.safe_load(open('config/config.yaml')))"
+#### **Utilities**
+- **click>=8.0.0**: CLI framework
+- **rich>=13.0.0**: Terminal formatting
+- **pydantic>=2.11.7**: Data validation
+- **aiohttp>=3.12.15**: Async HTTP client
 
-# Check file processing status
-python main.py file-status data/documents/
+### **Architecture Components**
 
-# Clean up duplicates
-python main.py cleanup-duplicates
+#### **Query Router**
+- **Intent Classification**: LLM-based query analysis
+- **Pattern Matching**: Rule-based fallback classification
+- **Priority Routing**: KG/RAG prioritized over KB
+- **Confidence Scoring**: Multi-level decision making
+
+#### **Knowledge Base**
+- **Local JSON Storage**: Facts stored in `data/kb/` directory
+- **Semantic Search**: Sentence transformers for similarity
+- **Structured Data**: Subject-predicate-object triples
+- **Embedding Model**: `sentence-transformers/all-MiniLM-L6-v2`
+
+#### **Knowledge Graph**
+- **Neo4j AuraDB**: Cloud-hosted graph database for entities/relationships
+- **GraphRAG Integration**: LLM-based graph querying
+- **Vector Index**: Pinecone integration for hybrid search
+- **APOC Plugin**: Advanced graph operations
+- **Environment Config**: `NEO4J_PASSWORD` in `.env` file
+
+#### **RAG System**
+- **Pinecone Vector DB**: Cloud-native vector storage
+- **Document Chunking**: RecursiveCharacterTextSplitter
+- **Embedding Generation**: OpenAI text-embedding-ada-002
+- **Retrieval**: Top-k similarity search
+- **Answer Generation**: LLM synthesis from chunks
+
+#### **Document Ingestion**
+- **Multi-format Support**: PDF, JSON, MD, TXT, DOCX
+- **Batch Processing**: Parallel and batch ingestion
+- **File Change Detection**: Metadata tracking with hashes
+- **Duplicate Management**: Content-based deduplication
+
+### **Data Flow Architecture**
+
 ```
+User Query → Query Router → Intent Classification → Subsystem Selection
+                                                      ↓
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│  Knowledge Base │    │ Knowledge Graph │    │   RAG System    │
+│                 │    │                 │    │                 │
+│ • Fact Storage  │    │ • Neo4j Graph   │    │ • Pinecone      │
+│ • Embedding     │    │ • GraphRAG      │    │ • LangChain     │
+│ • Similarity    │    │ • Vector Index  │    │ • OpenAI LLM    │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+         ↓                       ↓                       ↓
+    Factual Answer         Relational Answer      Generative Answer
+```
+
+### **Performance Characteristics**
+
+#### **Scalability**
+- **Pinecone**: Automatic cloud scaling
+- **Neo4j**: Horizontal scaling with clustering
+- **Async Processing**: Non-blocking operations
+- **Batch Operations**: Optimized for large datasets
+
+#### **Reliability**
+- **Error Handling**: Graceful degradation
+- **Fallback Mechanisms**: Rule-based routing
+- **Retry Logic**: Automatic retry on failures
+- **Logging**: Comprehensive error tracking
+
+#### **Observability**
+- **Debug Mode**: Visual query processing trace
+- **Statistics**: Real-time performance metrics
+- **Logging**: Detailed processing logs
+- **Monitoring**: System health tracking
+
+### **Development Guidelines**
+
+#### **Code Organization**
+- **Modular Design**: Independent subsystems
+- **Clear Interfaces**: Well-defined APIs
+- **Error Handling**: Comprehensive exceptions
+- **Testing**: Unit and integration tests
+
+#### **Adding Features**
+1. **LLM Providers**: Implement in `src/models/providers.py`
+2. **Document Formats**: Add to `src/ingestion/document_processor.py`
+3. **Query Types**: Extend routing in `src/router/query_router.py`
+4. **Storage Backends**: Implement new storage interfaces
+
+#### **Testing Strategy**
+- **Unit Tests**: Individual component testing
+- **Integration Tests**: Subsystem interaction testing
+- **End-to-End Tests**: Complete query flow testing
+- **Performance Tests**: System performance monitoring
+
+## 📝 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests for new functionality
+5. Submit a pull request
+
+## 📞 Support
+
+For issues and questions:
+1. Check the documentation
+2. Review the debug output
+3. Check system logs in `logs/`
+4. Open an issue with detailed error information

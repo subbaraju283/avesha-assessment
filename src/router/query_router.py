@@ -35,9 +35,11 @@ class QueryRouter:
     def __init__(self, config: Dict[str, Any], llm_manager: LLMManager):
         self.config = config
         self.llm_manager = llm_manager
-        self.kb_threshold = config.get("kb_threshold", 0.7)
-        self.kg_threshold = config.get("kg_threshold", 0.6)
-        self.rag_threshold = config.get("rag_threshold", 0.4)
+        
+        # Adjusted thresholds to prioritize KG and RAG over KB
+        self.kb_threshold = config.get("kb_threshold", 0.85)  # Higher threshold for KB
+        self.kg_threshold = config.get("kg_threshold", 0.5)   # Lower threshold for KG
+        self.rag_threshold = config.get("rag_threshold", 0.3) # Lower threshold for RAG
         self.confidence_threshold = config.get("confidence_threshold", 0.8)
         
         # Query patterns for classification
@@ -50,13 +52,15 @@ class QueryRouter:
         self.kg_patterns = [
             "which missions", "what missions", "how are", "relationship between",
             "connected to", "related to", "studied", "used", "involved",
-            "compare", "similar", "different", "both", "either", "neither"
+            "compare", "similar", "different", "both", "either", "neither",
+            "missions that", "spacecraft that", "technologies used by"
         ]
         
         self.rag_patterns = [
             "explain", "describe", "how does", "what is the process",
             "tell me about", "elaborate", "detailed", "comprehensive",
-            "analysis", "synthesis", "overview", "summary"
+            "analysis", "synthesis", "overview", "summary", "how",
+            "why", "what causes", "what led to", "background"
         ]
     
     async def route_query(self, query: str, debug: bool = False) -> RoutingDecision:
@@ -98,7 +102,7 @@ class QueryRouter:
             return self._fallback_intent_classification(query)
     
     def _fallback_intent_classification(self, query: str) -> Dict[str, float]:
-        """Fallback intent classification using rule-based approach."""
+        """Fallback intent classification using rule-based approach with KG/RAG prioritization."""
         query_lower = query.lower()
         
         # Rule-based scoring using defined patterns
@@ -106,20 +110,20 @@ class QueryRouter:
         relational_score = 0.0
         generative_score = 0.0
         
-        # Factual indicators (KB patterns)
+        # Factual indicators (KB patterns) - reduced weight
         for pattern in self.kb_patterns:
             if pattern in query_lower:
-                factual_score += 0.3
+                factual_score += 0.2  # Reduced from 0.3
         
-        # Relational indicators (KG patterns)
+        # Relational indicators (KG patterns) - increased weight
         for pattern in self.kg_patterns:
             if pattern in query_lower:
-                relational_score += 0.3
+                relational_score += 0.4  # Increased from 0.3
         
-        # Generative indicators (RAG patterns)
+        # Generative indicators (RAG patterns) - increased weight
         for pattern in self.rag_patterns:
             if pattern in query_lower:
-                generative_score += 0.3
+                generative_score += 0.4  # Increased from 0.3
         
         # Normalize scores
         total = factual_score + relational_score + generative_score
@@ -128,10 +132,10 @@ class QueryRouter:
             relational_score /= total
             generative_score /= total
         else:
-            # Default to generative if no clear indicators
-            factual_score = 0.2
-            relational_score = 0.3
-            generative_score = 0.5
+            # Default to RAG for comprehensive answers, then KG, then KB
+            factual_score = 0.15   # Reduced from 0.2
+            relational_score = 0.35 # Increased from 0.3
+            generative_score = 0.5  # Increased from 0.5
         
         return {
             "factual": factual_score,
@@ -144,30 +148,53 @@ class QueryRouter:
         query: str, 
         intent_scores: Dict[str, float]
     ) -> RoutingDecision:
-        """Make final routing decision based on analysis."""
+        """Make final routing decision based on analysis with KG/RAG prioritization."""
         
-        # Get the highest scoring intent
-        best_intent = max(intent_scores.items(), key=lambda x: x[1])
-        confidence = best_intent[1]
+        # Get scores for each intent
+        factual_score = intent_scores.get("factual", 0.0)
+        relational_score = intent_scores.get("relational", 0.0)
+        generative_score = intent_scores.get("generative", 0.0)
         
-        # Determine query type and subsystem
-        if best_intent[0] == "factual" and confidence >= self.kb_threshold:
+        # Enhanced routing logic with KG/RAG prioritization
+        
+        # 1. Check for very high factual confidence (only route to KB for very specific facts)
+        if factual_score >= self.kb_threshold and factual_score > (relational_score + 0.2) and factual_score > (generative_score + 0.2):
             query_type = QueryType.FACTUAL
             subsystem = "KB"
-            reasoning = f"Query classified as factual with {confidence:.2f} confidence"
-        elif best_intent[0] == "relational" and confidence >= self.kg_threshold:
+            reasoning = f"High factual confidence ({factual_score:.2f}) - specific fact query"
+        
+        # 2. Check for relational queries (prioritize KG)
+        elif relational_score >= self.kg_threshold:
             query_type = QueryType.RELATIONAL
             subsystem = "KG"
-            reasoning = f"Query classified as relational with {confidence:.2f} confidence"
-        elif best_intent[0] == "generative" and confidence >= self.rag_threshold:
+            reasoning = f"Relational query detected ({relational_score:.2f}) - using Knowledge Graph"
+        
+        # 3. Check for generative queries (prioritize RAG)
+        elif generative_score >= self.rag_threshold:
             query_type = QueryType.GENERATIVE
             subsystem = "RAG"
-            reasoning = f"Query classified as generative with {confidence:.2f} confidence"
+            reasoning = f"Generative query detected ({generative_score:.2f}) - using RAG system"
+        
+        # 4. Mixed confidence scenarios - prioritize KG and RAG
+        elif relational_score > 0.3 or generative_score > 0.3:
+            # If both KG and RAG have decent scores, prefer the higher one
+            if relational_score >= generative_score:
+                query_type = QueryType.RELATIONAL
+                subsystem = "KG"
+                reasoning = f"Mixed confidence - preferring KG ({relational_score:.2f} vs RAG {generative_score:.2f})"
+            else:
+                query_type = QueryType.GENERATIVE
+                subsystem = "RAG"
+                reasoning = f"Mixed confidence - preferring RAG ({generative_score:.2f} vs KG {relational_score:.2f})"
+        
+        # 5. Low confidence scenarios - default to RAG for comprehensive answers
         else:
-            # Fallback to RAG for complex queries
             query_type = QueryType.GENERATIVE
             subsystem = "RAG"
-            reasoning = f"Fallback to RAG due to low confidence ({confidence:.2f})"
+            reasoning = f"Low confidence across all systems - defaulting to RAG for comprehensive answer"
+        
+        # Use the highest score for confidence
+        confidence = max(factual_score, relational_score, generative_score)
         
         return RoutingDecision(
             query_type=query_type,
@@ -176,7 +203,8 @@ class QueryRouter:
             subsystem=subsystem,
             metadata={
                 "intent_scores": intent_scores,
-                "query_length": len(query)
+                "query_length": len(query),
+                "routing_priority": "KG/RAG prioritized"
             }
         )
     
