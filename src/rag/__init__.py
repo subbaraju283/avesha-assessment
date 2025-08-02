@@ -1,8 +1,8 @@
 """
-RAG (Retrieval-Augmented Generation) implementation for generative answers.
+RAG (Retrieval-Augmented Generation) system for document-based question answering.
 """
 
-from .rag_system import RAGSystem
-from .vector_store import VectorStore
+from .pinecone_rag_system import PineconeRAGSystem
+from .models import DocumentChunk, RAGQueryResult
 
-__all__ = ["RAGSystem", "VectorStore"] 
+__all__ = ["PineconeRAGSystem", "DocumentChunk", "RAGQueryResult"] 

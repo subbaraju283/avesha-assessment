@@ -1,8 +1,7 @@
 """
-Knowledge Graph implementation for relational reasoning.
+Neo4j-based Knowledge Graph implementation for relational reasoning.
 """
 
-from .knowledge_graph import KnowledgeGraph
-from .graph_store import GraphStore
+from .neo4j_knowledge_graph import Neo4jKnowledgeGraph, Neo4jKGQueryResult
 
-__all__ = ["KnowledgeGraph", "GraphStore"] 
+__all__ = ["Neo4jKnowledgeGraph", "Neo4jKGQueryResult"] 

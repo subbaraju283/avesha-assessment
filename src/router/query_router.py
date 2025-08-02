@@ -72,62 +72,19 @@ class QueryRouter:
         """
         logger.info(f"Routing query: {query}")
         
-        # Step 1: Analyze query characteristics
-        characteristics = self._analyze_query_characteristics(query)
-        
-        # Step 2: Classify query intent
+        # Step 1: Classify query intent
         intent_scores = await self._classify_intent(query)
         
-        # Step 3: Make routing decision
-        decision = self._make_routing_decision(query, characteristics, intent_scores)
+        # Step 2: Make routing decision
+        decision = self._make_routing_decision(query, intent_scores)
         
         if debug:
-            logger.info(f"Query characteristics: {characteristics}")
             logger.info(f"Intent scores: {intent_scores}")
             logger.info(f"Routing decision: {decision}")
         
         return decision
     
-    def _analyze_query_characteristics(self, query: str) -> Dict[str, Any]:
-        """Analyze query characteristics for routing."""
-        query_lower = query.lower()
-        
-        # Check for pattern matches
-        kb_matches = sum(1 for pattern in self.kb_patterns if pattern in query_lower)
-        kg_matches = sum(1 for pattern in self.kg_patterns if pattern in query_lower)
-        rag_matches = sum(1 for pattern in self.rag_patterns if pattern in query_lower)
-        
-        # Analyze query complexity
-        word_count = len(query.split())
-        has_question_words = any(word in query_lower for word in ["what", "when", "where", "who", "how", "why", "which"])
-        has_comparison_words = any(word in query_lower for word in ["and", "or", "but", "while", "however"])
-        
-        return {
-            "word_count": word_count,
-            "has_question_words": has_question_words,
-            "has_comparison_words": has_comparison_words,
-            "kb_pattern_matches": kb_matches,
-            "kg_pattern_matches": kg_matches,
-            "rag_pattern_matches": rag_matches,
-            "complexity_score": self._calculate_complexity_score(query)
-        }
-    
-    def _calculate_complexity_score(self, query: str) -> float:
-        """Calculate query complexity score."""
-        words = query.split()
-        word_count = len(words)
-        
-        # Simple complexity based on word count and special words
-        complexity = min(word_count / 10.0, 1.0)  # Normalize to 0-1
-        
-        # Boost complexity for certain patterns
-        if any(word in query.lower() for word in ["compare", "analyze", "explain", "describe"]):
-            complexity += 0.3
-        
-        if any(word in query.lower() for word in ["and", "or", "but", "while", "however"]):
-            complexity += 0.2
-        
-        return min(complexity, 1.0)
+
     
     async def _classify_intent(self, query: str) -> Dict[str, float]:
         """Classify query intent using LLM."""
@@ -144,28 +101,25 @@ class QueryRouter:
         """Fallback intent classification using rule-based approach."""
         query_lower = query.lower()
         
-        # Rule-based scoring
+        # Rule-based scoring using defined patterns
         factual_score = 0.0
         relational_score = 0.0
         generative_score = 0.0
         
-        # Factual indicators
-        if any(word in query_lower for word in ["what is", "when", "who", "where", "how many"]):
-            factual_score += 0.4
-        if any(word in query_lower for word in ["mission", "spacecraft", "date", "name"]):
-            factual_score += 0.3
+        # Factual indicators (KB patterns)
+        for pattern in self.kb_patterns:
+            if pattern in query_lower:
+                factual_score += 0.3
         
-        # Relational indicators
-        if any(word in query_lower for word in ["which", "studied", "used", "involved", "relationship"]):
-            relational_score += 0.4
-        if any(word in query_lower for word in ["and", "or", "both", "either"]):
-            relational_score += 0.3
+        # Relational indicators (KG patterns)
+        for pattern in self.kg_patterns:
+            if pattern in query_lower:
+                relational_score += 0.3
         
-        # Generative indicators
-        if any(word in query_lower for word in ["explain", "describe", "how does", "tell me about"]):
-            generative_score += 0.4
-        if any(word in query_lower for word in ["process", "analysis", "overview"]):
-            generative_score += 0.3
+        # Generative indicators (RAG patterns)
+        for pattern in self.rag_patterns:
+            if pattern in query_lower:
+                generative_score += 0.3
         
         # Normalize scores
         total = factual_score + relational_score + generative_score
@@ -174,10 +128,10 @@ class QueryRouter:
             relational_score /= total
             generative_score /= total
         else:
-            # Default to factual if no clear indicators
-            factual_score = 0.5
+            # Default to generative if no clear indicators
+            factual_score = 0.2
             relational_score = 0.3
-            generative_score = 0.2
+            generative_score = 0.5
         
         return {
             "factual": factual_score,
@@ -188,7 +142,6 @@ class QueryRouter:
     def _make_routing_decision(
         self, 
         query: str, 
-        characteristics: Dict[str, Any], 
         intent_scores: Dict[str, float]
     ) -> RoutingDecision:
         """Make final routing decision based on analysis."""
@@ -216,20 +169,12 @@ class QueryRouter:
             subsystem = "RAG"
             reasoning = f"Fallback to RAG due to low confidence ({confidence:.2f})"
         
-        # Additional reasoning based on characteristics
-        if characteristics["complexity_score"] > 0.7:
-            reasoning += f". High complexity ({characteristics['complexity_score']:.2f})"
-        
-        if characteristics["word_count"] > 15:
-            reasoning += f". Long query ({characteristics['word_count']} words)"
-        
         return RoutingDecision(
             query_type=query_type,
             confidence=confidence,
             reasoning=reasoning,
             subsystem=subsystem,
             metadata={
-                "characteristics": characteristics,
                 "intent_scores": intent_scores,
                 "query_length": len(query)
             }

@@ -1,8 +1,7 @@
 """
-Query routing logic for the NASA query system.
+Query routing components for intelligent query classification and routing.
 """
 
-from .query_router import QueryRouter
-from .intent_classifier import IntentClassifier
+from .query_router import QueryRouter, RoutingDecision, QueryType
 
-__all__ = ["QueryRouter", "IntentClassifier"] 
+__all__ = ["QueryRouter", "RoutingDecision", "QueryType"] 

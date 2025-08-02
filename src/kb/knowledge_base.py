@@ -196,28 +196,58 @@ class KnowledgeBase:
     
     async def _analyze_query(self, query: str) -> Dict[str, Any]:
         """Analyze query to extract entities and intent."""
-        # Use LLM to extract entities and intent
-        prompt = f"""
-        Analyze this NASA-related query and extract:
-        1. Main entities (missions, spacecraft, planets, technologies)
-        2. Predicates (what information is being asked for)
-        3. Query type (factual lookup, comparison, etc.)
-        
-        Query: {query}
-        
-        Respond in JSON format with keys: entities, predicates, query_type
-        """
+        # Use LLM to extract entities and intent with structured prompt
+        prompt = f"""Analyze this NASA-related query and extract specific information.
+
+Query: "{query}"
+
+Respond ONLY with a JSON object in this exact format:
+{{
+  "entities": ["entity1", "entity2"],
+  "predicates": ["predicate1", "predicate2"],
+  "query_type": "temporal|descriptive|relational|general"
+}}
+
+Rules:
+- entities: List of NASA entities (missions, spacecraft, planets, technologies)
+- predicates: List of information types being requested (launch_date, uses_technology, studied_planet, etc.)
+- query_type: One of "temporal", "descriptive", "relational", or "general"
+
+Do not include any other text or explanation. Only the JSON object."""
         
         try:
             response = await self.llm_manager.generate(prompt)
-            # Parse JSON response (simplified)
-            analysis = {
-                "entities": self._extract_entities_simple(query),
-                "predicates": self._extract_predicates_simple(query),
-                "query_type": self._classify_query_type(query)
-            }
+            # Parse JSON response
+            import json
+            import re
+            
+            # Extract JSON from response (in case there's extra text)
+            json_match = re.search(r'\{.*\}', response, re.DOTALL)
+            if json_match:
+                json_str = json_match.group()
+                analysis = json.loads(json_str)
+            else:
+                # Fallback: try to parse the entire response
+                analysis = json.loads(response)
+            
+            # Validate and ensure required fields
+            if "entities" not in analysis:
+                analysis["entities"] = []
+            if "predicates" not in analysis:
+                analysis["predicates"] = []
+            if "query_type" not in analysis:
+                analysis["query_type"] = "general"
+            
+            # Ensure entities and predicates are lists
+            if not isinstance(analysis["entities"], list):
+                analysis["entities"] = [analysis["entities"]] if analysis["entities"] else []
+            if not isinstance(analysis["predicates"], list):
+                analysis["predicates"] = [analysis["predicates"]] if analysis["predicates"] else []
+            
+            logger.debug(f"LLM analysis successful: {analysis}")
+            
         except Exception as e:
-            logger.warning(f"LLM query analysis failed: {e}")
+            logger.warning(f"LLM query analysis failed: {e}, using fallback")
             analysis = {
                 "entities": self._extract_entities_simple(query),
                 "predicates": self._extract_predicates_simple(query),

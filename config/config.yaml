@@ -3,21 +3,16 @@
 # LLM Configuration
 llm:
   default_provider: "openai"
-  providers:
-    openai:
-      api_key: "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"
-      model: "gpt-4"
-      temperature: 0.1
-      max_tokens: 2000
-    anthropic:
-      api_key: "${ANTHROPIC_API_KEY}"
-      model: "claude-3-sonnet-20240229"
-      temperature: 0.1
-      max_tokens: 2000
-    local:
-      model: "llama2-7b"
-      temperature: 0.1
-      max_tokens: 2000
+  openai:
+    model: "gpt-4"
+    temperature: 0.1
+    max_tokens: 2000
+    api_key: "${OPENAI_API_KEY}"  # Use environment variable
+  anthropic:
+    model: "claude-3-sonnet-20240229"
+    temperature: 0.1
+    max_tokens: 2000
+    api_key: "${ANTHROPIC_API_KEY}"  # Use environment variable
 
 # Query Router Configuration
 router:
@@ -37,9 +32,9 @@ kb:
 
 # Knowledge Graph Configuration
 kg:
-  database_url: "bolt://localhost:7687"
+  database_url: "neo4j+s://72bbcca1.databases.neo4j.io"
   username: "neo4j"
-  password: "password"
+  password: "TqEewyu6IUiWVzoaUXfHTjXAC2JHUg72C_p4AEIwJEY"
   max_depth: 3
   max_paths: 5
   relationship_types:
@@ -51,10 +46,13 @@ kg:
 
 # RAG Configuration
 rag:
-  vector_store_path: "data/rag"
-  chunk_size: 1000
-  chunk_overlap: 200
-  embedding_model: "sentence-transformers/all-MiniLM-L6-v2"
+  # Pinecone Configuration
+  pinecone_index_name: "nasa-docs"
+  pinecone_api_key: "${PINECONE_API_KEY}"  # Use environment variable
+  
+  # Document Processing
+  chunk_size: 500
+  chunk_overlap: 50
   retrieval_k: 5
   rerank_top_k: 3
 
@@ -70,12 +68,13 @@ ingestion:
   max_workers: 4
   processing_timeout: 300
   auto_index: true
+  use_llm_extraction: true  # Enable LLM-based graph extraction
 
 # Logging Configuration
 logging:
   level: "INFO"
-  format: "json"
-  output_file: "logs/nasa_query.log"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/nasa_query_system.log"
   max_file_size: "10MB"
   backup_count: 5
 
@@ -86,6 +85,8 @@ debug:
   show_routing_decisions: true
   visualize_graph: true
   save_intermediate_results: false
+  show_routing_reasoning: true
+  show_extraction_details: true
 
 # API Configuration
 api:
