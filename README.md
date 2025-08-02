@@ -213,110 +213,25 @@ python main.py query "What is the launch date of Voyager 1?"
 python main.py query "When was the Hubble Space Telescope launched?"
 python main.py query "What is the launch date of Mars Curiosity?"
 python main.py query "When was the James Webb Space Telescope launched?"
-
-# Mission technologies and capabilities
-python main.py query "What technology does Voyager 1 use for propulsion?"
-python main.py query "What power source does Mars Curiosity use?"
-python main.py query "What technology does Voyager 1 use for power generation?"
-python main.py query "What is the primary objective of Apollo 11?"
-python main.py query "What is the mission objective of Perseverance?"
-
-# Mission status and current operations
-python main.py query "Is Voyager 1 still active?"
-python main.py query "What is the current status of Hubble Space Telescope?"
-python main.py query "Is Mars Curiosity still operational?"
-python main.py query "What is the current status of James Webb Space Telescope?"
-python main.py query "Is Perseverance still exploring Mars?"
-
-# Planetary exploration facts
-python main.py query "Which planets did Voyager 1 study?"
-python main.py query "What does Mars Curiosity study on Mars?"
-python main.py query "What does Perseverance study on Mars?"
-python main.py query "What type of exploration does Curiosity perform?"
-python main.py query "What samples does Perseverance collect?"
-
-# Mission relationships and connections
-python main.py query "What is the relationship between Voyager 1 and Voyager 2?"
-python main.py query "How are Curiosity and Perseverance related?"
-python main.py query "What connects Hubble and James Webb telescopes?"
-python main.py query "What missions use nuclear power technology?"
-python main.py query "Which missions explore Mars?"
 ```
 
 ### **Knowledge Graph Queries** (Relational Reasoning)
 ```bash
 # Mission relationships and connections
 python main.py query "Which missions used ion propulsion technology?"
-python main.py query "How are Voyager missions related to Mars exploration?"
-python main.py query "What missions studied Jupiter and Saturn?"
 python main.py query "Which missions use nuclear power technology?"
-python main.py query "What connects the Apollo program to modern Mars missions?"
-
-# Technology relationships
-python main.py query "What missions use radioisotope thermoelectric generators?"
-python main.py query "How are ion propulsion and nuclear power related in space missions?"
-python main.py query "What technologies are used by multiple missions?"
-python main.py query "Which missions use solar panel technology?"
-python main.py query "What propulsion systems are used in deep space missions?"
-
-# Planetary exploration networks
 python main.py query "What missions explore Mars and what do they study?"
 python main.py query "How do Voyager missions connect to planetary exploration?"
-python main.py query "What missions study multiple planets?"
 python main.py query "Which missions are related to interstellar exploration?"
-python main.py query "What connects Mars rovers to planetary science?"
-
-# Mission objective relationships
-python main.py query "What missions have similar objectives?"
-python main.py query "How are telescope missions related to planetary exploration?"
-python main.py query "What connects life detection missions?"
-python main.py query "Which missions focus on sample collection?"
-python main.py query "What missions are related to space exploration technology?"
-
-# Temporal and operational relationships
-python main.py query "What missions are currently active?"
-python main.py query "How are missions from different decades related?"
-python main.py query "What missions launched from Kennedy Space Center?"
-python main.py query "Which missions use similar launch vehicles?"
-python main.py query "What missions have long-term operational status?"
 ```
 
 ### **RAG Queries** (Generative Explanations)
 ```bash
 # Detailed mission explanations
 python main.py query "Explain the Apollo 11 mission and its significance"
-python main.py query "Describe the Voyager program and what it discovered"
-python main.py query "How does ion propulsion work in space missions?"
 python main.py query "Explain the Hubble Space Telescope and its contributions to astronomy"
-python main.py query "What is the James Webb Space Telescope and how does it work?"
-
-# Technology explanations
-python main.py query "How do radioisotope thermoelectric generators work?"
-python main.py query "Explain the differences between solar panels and nuclear power in space"
 python main.py query "How do spacecraft navigate in deep space?"
-python main.py query "What are the challenges of Mars exploration?"
-python main.py query "How do telescopes detect exoplanets?"
-
-# Scientific process explanations
-python main.py query "How do scientists search for signs of life on Mars?"
-python main.py query "Explain the process of sample collection in space missions"
-python main.py query "How do astronomers study distant planets?"
-python main.py query "What methods are used to detect exoplanets?"
-python main.py query "How do space missions contribute to our understanding of the universe?"
-
-# Historical and programmatic context
-python main.py query "How did the Apollo program influence modern space exploration?"
-python main.py query "What is the significance of the Voyager missions?"
-python main.py query "How has Mars exploration evolved over time?"
 python main.py query "What is the future of space telescope technology?"
-python main.py query "How do different space agencies collaborate on missions?"
-
-# Technical and operational details
-python main.py query "What are the challenges of long-duration space missions?"
-python main.py query "How do spacecraft communicate with Earth from deep space?"
-python main.py query "What instruments are used to study planetary surfaces?"
-python main.py query "How do rovers navigate and operate on Mars?"
-python main.py query "What are the requirements for human spaceflight missions?"
 ```
 
 ### **Duplicate Management**
