@@ -454,3 +454,77 @@
 2025-08-02 14:39:14,390 - src.ingestion.hybrid_ingestion_pipeline - INFO - Batch upserted 5 vectors for 1 files
 2025-08-02 14:39:14,390 - src.ingestion.hybrid_ingestion_pipeline - INFO - New file detected: ion_propulsion_technology.pdf
 2025-08-02 14:39:14,392 - src.ingestion.hybrid_ingestion_pipeline - INFO - Completed batch 3/3
+2025-08-02 15:24:53,937 - src.models.llm_manager - INFO - OpenAI provider initialized
+2025-08-02 15:24:53,947 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-08-02 15:24:53,947 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-02 15:24:55,935 - src.kb.fact_store - INFO - Loaded 12 facts from data/kb/facts.json
+2025-08-02 15:24:55,940 - src.kb.knowledge_base - INFO - Loaded 12 NASA facts into knowledge base
+2025-08-02 15:24:56,017 - neo4j_graphrag.indexes - INFO - Creating vector index named 'text_embeddings'
+2025-08-02 15:24:56,687 - neo4j.notifications - INFO - Received notification from DBMS server: {severity: INFORMATION} {code: Neo.ClientNotification.Schema.IndexOrConstraintAlreadyExists} {category: SCHEMA} {title: `CREATE VECTOR INDEX text_embeddings IF NOT EXISTS FOR (e:Chunk) ON (e.embedding) OPTIONS {indexConfig: {`vector.dimensions`: toInteger($dimensions), `vector.similarity_function`: $similarity_fn}}` has no effect.} {description: `VECTOR INDEX text_embeddings FOR (e:Chunk) ON (e.embedding)` already exists.} {position: None} for query: 'CREATE VECTOR INDEX $name IF NOT EXISTS FOR (n:Chunk) ON n.embedding OPTIONS { indexConfig: { `vector.dimensions`: toInteger($dimensions), `vector.similarity_function`: $similarity_fn } }'
+2025-08-02 15:24:56,739 - src.kg.neo4j_knowledge_graph - INFO - Vector index 'text_embeddings' created successfully
+2025-08-02 15:24:57,012 - src.kg.neo4j_knowledge_graph - INFO - GraphRAG initialized successfully
+2025-08-02 15:24:57,012 - src.kg.neo4j_knowledge_graph - INFO - Neo4j Knowledge Graph initialized
+2025-08-02 15:24:57,754 - src.rag.pinecone_rag_system - INFO - Using existing Pinecone index: nasa-docs
+2025-08-02 15:24:57,926 - src.rag.pinecone_rag_system - INFO - Pinecone RAG System initialized
+2025-08-02 15:24:57,927 - __main__ - INFO - Pinecone RAG system initialized
+2025-08-02 15:24:57,955 - neo4j_graphrag.indexes - INFO - Creating vector index named 'text_embeddings'
+2025-08-02 15:24:58,452 - neo4j.notifications - INFO - Received notification from DBMS server: {severity: INFORMATION} {code: Neo.ClientNotification.Schema.IndexOrConstraintAlreadyExists} {category: SCHEMA} {title: `CREATE VECTOR INDEX text_embeddings IF NOT EXISTS FOR (e:Chunk) ON (e.embedding) OPTIONS {indexConfig: {`vector.dimensions`: toInteger($dimensions), `vector.similarity_function`: $similarity_fn}}` has no effect.} {description: `VECTOR INDEX text_embeddings FOR (e:Chunk) ON (e.embedding)` already exists.} {position: None} for query: 'CREATE VECTOR INDEX $name IF NOT EXISTS FOR (n:Chunk) ON n.embedding OPTIONS { indexConfig: { `vector.dimensions`: toInteger($dimensions), `vector.similarity_function`: $similarity_fn } }'
+2025-08-02 15:24:58,495 - src.ingestion.hybrid_ingestion_pipeline - INFO - Vector index 'text_embeddings' created successfully
+2025-08-02 15:24:58,504 - src.models.llm_manager - INFO - OpenAI provider initialized
+2025-08-02 15:24:58,728 - src.rag.pinecone_rag_system - INFO - Using existing Pinecone index: nasa-docs
+2025-08-02 15:24:58,730 - src.rag.pinecone_rag_system - INFO - Pinecone RAG System initialized
+2025-08-02 15:24:58,730 - src.ingestion.hybrid_ingestion_pipeline - INFO - Pinecone RAG system initialized for hybrid ingestion
+2025-08-02 15:24:58,730 - src.ingestion.hybrid_ingestion_pipeline - INFO - Document processor initialized
+2025-08-02 15:24:58,731 - src.ingestion.hybrid_ingestion_pipeline - INFO - Loaded metadata for 7 files
+2025-08-02 15:24:58,736 - src.router.query_router - INFO - Routing query: Explain how NASA studies exoplanets
+2025-08-02 15:25:00,775 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-02 15:25:00,795 - src.rag.pinecone_rag_system - INFO - Pinecone RAG Query: Explain how NASA studies exoplanets
+2025-08-02 15:25:01,298 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-08-02 15:25:01,937 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-08-02 15:25:02,212 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-08-02 15:25:02,502 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-08-02 15:25:02,697 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-08-02 15:25:02,847 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-08-02 15:25:03,025 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-08-02 15:25:03,209 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-08-02 15:25:03,673 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-08-02 15:25:03,920 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-08-02 15:25:04,078 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-08-02 15:25:08,710 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-02 15:27:40,041 - src.models.llm_manager - INFO - OpenAI provider initialized
+2025-08-02 15:27:40,062 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-08-02 15:27:40,062 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-08-02 15:27:41,423 - src.kb.fact_store - INFO - Loaded 12 facts from data/kb/facts.json
+2025-08-02 15:27:41,425 - src.kb.knowledge_base - INFO - Loaded 12 NASA facts into knowledge base
+2025-08-02 15:27:41,440 - neo4j_graphrag.indexes - INFO - Creating vector index named 'text_embeddings'
+2025-08-02 15:27:41,991 - neo4j.notifications - INFO - Received notification from DBMS server: {severity: INFORMATION} {code: Neo.ClientNotification.Schema.IndexOrConstraintAlreadyExists} {category: SCHEMA} {title: `CREATE VECTOR INDEX text_embeddings IF NOT EXISTS FOR (e:Chunk) ON (e.embedding) OPTIONS {indexConfig: {`vector.dimensions`: toInteger($dimensions), `vector.similarity_function`: $similarity_fn}}` has no effect.} {description: `VECTOR INDEX text_embeddings FOR (e:Chunk) ON (e.embedding)` already exists.} {position: None} for query: 'CREATE VECTOR INDEX $name IF NOT EXISTS FOR (n:Chunk) ON n.embedding OPTIONS { indexConfig: { `vector.dimensions`: toInteger($dimensions), `vector.similarity_function`: $similarity_fn } }'
+2025-08-02 15:27:42,038 - src.kg.neo4j_knowledge_graph - INFO - Vector index 'text_embeddings' created successfully
+2025-08-02 15:27:42,310 - src.kg.neo4j_knowledge_graph - INFO - GraphRAG initialized successfully
+2025-08-02 15:27:42,311 - src.kg.neo4j_knowledge_graph - INFO - Neo4j Knowledge Graph initialized
+2025-08-02 15:27:42,744 - src.rag.pinecone_rag_system - INFO - Using existing Pinecone index: nasa-docs
+2025-08-02 15:27:42,917 - src.rag.pinecone_rag_system - INFO - Pinecone RAG System initialized
+2025-08-02 15:27:42,917 - __main__ - INFO - Pinecone RAG system initialized
+2025-08-02 15:27:42,948 - neo4j_graphrag.indexes - INFO - Creating vector index named 'text_embeddings'
+2025-08-02 15:27:43,455 - neo4j.notifications - INFO - Received notification from DBMS server: {severity: INFORMATION} {code: Neo.ClientNotification.Schema.IndexOrConstraintAlreadyExists} {category: SCHEMA} {title: `CREATE VECTOR INDEX text_embeddings IF NOT EXISTS FOR (e:Chunk) ON (e.embedding) OPTIONS {indexConfig: {`vector.dimensions`: toInteger($dimensions), `vector.similarity_function`: $similarity_fn}}` has no effect.} {description: `VECTOR INDEX text_embeddings FOR (e:Chunk) ON (e.embedding)` already exists.} {position: None} for query: 'CREATE VECTOR INDEX $name IF NOT EXISTS FOR (n:Chunk) ON n.embedding OPTIONS { indexConfig: { `vector.dimensions`: toInteger($dimensions), `vector.similarity_function`: $similarity_fn } }'
+2025-08-02 15:27:43,502 - src.ingestion.hybrid_ingestion_pipeline - INFO - Vector index 'text_embeddings' created successfully
+2025-08-02 15:27:43,510 - src.models.llm_manager - INFO - OpenAI provider initialized
+2025-08-02 15:27:43,712 - src.rag.pinecone_rag_system - INFO - Using existing Pinecone index: nasa-docs
+2025-08-02 15:27:43,713 - src.rag.pinecone_rag_system - INFO - Pinecone RAG System initialized
+2025-08-02 15:27:43,714 - src.ingestion.hybrid_ingestion_pipeline - INFO - Pinecone RAG system initialized for hybrid ingestion
+2025-08-02 15:27:43,714 - src.ingestion.hybrid_ingestion_pipeline - INFO - Document processor initialized
+2025-08-02 15:27:43,715 - src.ingestion.hybrid_ingestion_pipeline - INFO - Loaded metadata for 7 files
+2025-08-02 15:27:43,720 - src.router.query_router - INFO - Routing query: Describe the challenges of Mars exploration
+2025-08-02 15:27:45,463 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-02 15:27:45,470 - src.rag.pinecone_rag_system - INFO - Pinecone RAG Query: Describe the challenges of Mars exploration
+2025-08-02 15:27:45,718 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-08-02 15:27:46,284 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-08-02 15:27:46,437 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-08-02 15:27:46,896 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-08-02 15:27:47,103 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-08-02 15:27:47,408 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-08-02 15:27:47,715 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-08-02 15:27:47,842 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-08-02 15:27:48,011 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-08-02 15:27:48,163 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-08-02 15:27:48,310 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-08-02 15:27:49,175 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
