@@ -1,6 +1,6 @@
-# NASA Query System - Hybrid KB/KG/RAG Architecture
+Query System - Hybrid KB/KG/RAG Architecture
 
-A production-grade system for querying NASA documentation using a hybrid architecture combining Knowledge Base (KB), Knowledge Graph (KG), and Retrieval-Augmented Generation (RAG) with intelligent query routing.
+A production-grade system for querying documentation using a hybrid architecture combining Knowledge Base (KB), Knowledge Graph (KG), and Retrieval-Augmented Generation (RAG) with intelligent query routing.
 
 ## 🏗️ Architecture Overview
 
@@ -25,7 +25,7 @@ The system automatically routes queries to the most appropriate subsystem based 
 ### **Multi-Layered Query Handling**
 - **KB**: Exact factual Q&A (mission dates, spacecraft specs)
 - **KG**: Relational reasoning ("Which missions studied Mars and used ion propulsion?")
-- **RAG**: Generative answers and explanations ("Explain how NASA studies exoplanets")
+- **RAG**: Generative answers and explanations ("Explain how Voyager studies exoplanets")
 
 ### **Runtime Extensibility**
 - Automatically index new documents (PDF, JSON, Markdown, TXT, DOCX)
@@ -147,7 +147,7 @@ NEO4J_PASSWORD=your_neo4j_password
 
 ### **4. Initial Data Ingestion**
 ```bash
-# Ingest initial NASA knowledge data
+# Ingest initial knowledge data
 python main.py ingest-initial
 
 # Or ingest all documents in data/documents/
@@ -196,7 +196,7 @@ kg:
 
 # RAG System
 rag:
-  pinecone_index_name: "nasa-docs"
+  pinecone_index_name: "docs"
   pinecone_api_key: "${PINECONE_API_KEY}"
   chunk_size: 500
   chunk_overlap: 50
